@@ -1,2 +1,4 @@
-package pl.scoutCamp.business.dao;public interface TeamCategorizationSheetDAO {
+package pl.scoutCamp.business.dao;
+
+public interface TeamCategorizationSheetDAO {
 }

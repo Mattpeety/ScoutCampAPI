@@ -1,2 +1,4 @@
-package pl.scoutCamp.business.dao;public interface UserDAO {
+package pl.scoutCamp.business.dao;
+
+public interface UserDAO {
 }

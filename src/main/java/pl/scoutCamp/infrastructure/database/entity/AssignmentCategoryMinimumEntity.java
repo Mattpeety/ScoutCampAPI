@@ -27,7 +27,3 @@ public class AssignmentCategoryMinimumEntity {
     private AssignmentEntity assignment;
 
 }
-
-// TODO: na koniec: przejrzeć czy nie brakuje mi jakichś powiązań między tabelami
-// TODO: sprawdzić dokładnie tabelę TeamCategorizationSheetAssignment czy tak ma być
-// TODO: podpiąć Gita i zrobić pierwszy commit :D

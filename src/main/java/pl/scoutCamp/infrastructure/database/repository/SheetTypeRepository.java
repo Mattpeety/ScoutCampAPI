@@ -1,2 +1,4 @@
-package pl.scoutCamp.infrastructure.database.repository;public class SheetTypeRepository {
+package pl.scoutCamp.infrastructure.database.repository;
+
+public class SheetTypeRepository {
 }
