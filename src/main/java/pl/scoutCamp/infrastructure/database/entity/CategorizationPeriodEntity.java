@@ -1,0 +1,29 @@
+package pl.scoutCamp.infrastructure.database.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Set;
+
+@Getter
+@Setter
+@EqualsAndHashCode(of = "categorizationPeriodId")
+@ToString(of = {"categorizationPeriodId", "name"})
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "categorization_period")
+public class CategorizationPeriodEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "categorization_period_id")
+    private Integer categorizationPeriodId;
+
+    @Column(name = "name")
+    private String name;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "categorizationPeriod")
+    private Set<CategorizationSheetEntity> categorizationSheets;
+}
