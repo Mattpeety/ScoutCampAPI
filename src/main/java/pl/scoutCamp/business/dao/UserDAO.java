@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface UserDAO {
 
-    Optional<User> findUserByFirstName(String id);
-    Optional<User> findUserByLastName(String id);
+    Optional<User> findUserByFirstName(String firstName);
+    Optional<User> findUserByLastName(String lastName);
 
     List<User> findAvailable();
 }

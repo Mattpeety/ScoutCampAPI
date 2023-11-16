@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 import pl.scoutCamp.infrastructure.database.entity.TroopEntity;
 import pl.scoutCamp.infrastructure.database.entity.UserEntity;
 
+import java.util.Optional;
+
 @Repository
 public interface TroopJpaRepository extends JpaRepository<TroopEntity, Integer> {
+
+    Optional<TroopEntity> findTroopByName (String name);
 }

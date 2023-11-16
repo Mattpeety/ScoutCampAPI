@@ -1,4 +1,23 @@
 package pl.scoutCamp.infrastructure.database.repository;
 
-public class CategorizationPeriodRepository {
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
+import pl.scoutCamp.business.dao.CategorizationPeriodDAO;
+import pl.scoutCamp.domain.exception.CategorizationPeriod;
+import pl.scoutCamp.infrastructure.database.repository.jpa.CategorizationPeriodJpaRepository;
+import pl.scoutCamp.infrastructure.database.repository.mapper.CategorizationPeriodEntityMapper;
+
+import java.util.Optional;
+
+@Repository
+@AllArgsConstructor
+public class CategorizationPeriodRepository implements CategorizationPeriodDAO {
+
+    CategorizationPeriodJpaRepository categorizationPeriodJpaRepository;
+    CategorizationPeriodEntityMapper categorizationPeriodEntityMapper;
+    @Override
+    public Optional<CategorizationPeriod> findCategorizationPeriodByName(String name) {
+        return categorizationPeriodJpaRepository.findCategorizationPeriodByName(name)
+                .map(categorizationPeriodEntityMapper::mapFromEntity);
+    }
 }

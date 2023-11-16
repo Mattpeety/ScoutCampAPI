@@ -19,13 +19,13 @@ public class UserRepository implements UserDAO {
 
     @Override
     public Optional<User> findUserByFirstName(String firstName) {
-        return userJpaRepository.findByFirstName(firstName)
+        return userJpaRepository.findUserByFirstName(firstName)
                 .map(userEntityMapper::mapFromEntity);
     }
 
     @Override
     public Optional<User> findUserByLastName(String lastName) {
-        return userJpaRepository.findByLastName(lastName)
+        return userJpaRepository.findUserByLastName(lastName)
                 .map(userEntityMapper::mapFromEntity);
     }
 

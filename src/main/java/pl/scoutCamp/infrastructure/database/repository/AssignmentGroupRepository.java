@@ -1,4 +1,24 @@
 package pl.scoutCamp.infrastructure.database.repository;
 
-public class AssignmentGroupRepository {
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
+import pl.scoutCamp.business.dao.AssignmentGroupDAO;
+import pl.scoutCamp.domain.exception.AssignmentGroup;
+import pl.scoutCamp.infrastructure.database.repository.jpa.AssignmentGroupJpaRepository;
+import pl.scoutCamp.infrastructure.database.repository.mapper.AssignmentGroupEntityMapper;
+
+import java.util.Optional;
+
+@Repository
+@AllArgsConstructor
+public class AssignmentGroupRepository implements AssignmentGroupDAO {
+
+    AssignmentGroupJpaRepository assignmentGroupJpaRepository;
+    AssignmentGroupEntityMapper assignmentGroupEntityMapper;
+
+    @Override
+    public Optional<AssignmentGroup> findAssignmentGroupByName(String name) {
+        return assignmentGroupJpaRepository.findAssignmentGroupByName(name)
+                .map(assignmentGroupEntityMapper::mapFromEntity);
+    }
 }
