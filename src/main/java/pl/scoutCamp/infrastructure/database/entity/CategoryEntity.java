@@ -8,8 +8,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "categoryId")
-@ToString(of = {"categoryId", "name", "imagePath"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "name", "imagePath"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +19,7 @@ public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
-    private Integer categoryId;
+    private Integer id;
 
     @Column(name = "name")
     private String name;

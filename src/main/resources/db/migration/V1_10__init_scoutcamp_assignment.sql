@@ -18,5 +18,4 @@ CREATE TABLE assignment
     CONSTRAINT fk_assignment_assignment_group
         FOREIGN KEY (assignment_group_id)
             REFERENCES assignment_group (assignment_group_id)
-
 );

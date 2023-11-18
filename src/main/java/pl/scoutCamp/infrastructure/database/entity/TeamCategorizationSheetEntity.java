@@ -10,8 +10,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "teamCategorizationSheetId")
-@ToString(of = {"teamCategorizationSheetId", "isDraft", "points", "createdAt", "updatedAt"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "isDraft", "points", "createdAt", "updatedAt"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,7 +22,7 @@ public class TeamCategorizationSheetEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_categorization_sheet_id")
-    private Integer teamCategorizationSheetId;
+    private Integer id;
 
     @Column(name = "is_draft")
     @JsonProperty(value = "isDraft")

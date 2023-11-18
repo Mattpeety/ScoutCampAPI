@@ -1,6 +1,6 @@
 package pl.scoutCamp.business.dao;
 
-import pl.scoutCamp.domain.exception.SheetType;
+import pl.scoutCamp.domain.SheetType;
 
 import java.util.Optional;
 

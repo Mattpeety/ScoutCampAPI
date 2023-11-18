@@ -1,6 +1,6 @@
 package pl.scoutCamp.business.dao;
 
-import pl.scoutCamp.domain.exception.AssignmentCategoryMinimum;
+import pl.scoutCamp.domain.AssignmentCategoryMinimum;
 
 import java.util.Optional;
 

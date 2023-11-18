@@ -8,8 +8,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "assignmentGroupId")
-@ToString(of = {"assignmentGroupId", "name", "ordered"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "name", "ordered"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +20,7 @@ public class AssignmentGroupEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "assignment_group_id")
-    private Integer assignmentGroupId;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -35,4 +35,7 @@ public class AssignmentGroupEntity {
             inverseJoinColumns = {@JoinColumn(name = "assignment_id")}
     )
     private Set<AssignmentEntity> assignments;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<AssignmentEntity> assignmentss ;
 }

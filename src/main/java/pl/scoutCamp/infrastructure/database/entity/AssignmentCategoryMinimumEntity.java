@@ -5,8 +5,8 @@ import lombok.*;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "assignmentCategoryMinimumId")
-@ToString(of = {"assignmentCategoryMinimumId"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +16,7 @@ public class AssignmentCategoryMinimumEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "assignment_category_minimum_id")
-    private Integer assignmentCategoryMinimumId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
