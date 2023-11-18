@@ -5,8 +5,8 @@ import lombok.*;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "teamCategorizationSheetAssignmentId")
-@ToString(of = {"teamCategorizationSheetAssignmentId", "isCompleted", "amount"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "isCompleted", "amount"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +17,7 @@ public class TeamCategorizationSheetAssignmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_categorization_sheet_assignment_id")
-    private Integer teamCategorizationSheetAssignmentId;
+    private Integer id;
 
     @Column(name = "is_completed")
     private Boolean isCompleted;

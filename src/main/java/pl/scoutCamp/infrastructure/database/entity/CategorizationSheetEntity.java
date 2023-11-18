@@ -7,8 +7,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "categorizationSheetId")
-@ToString(of = {"categorizationSheetId", "sheetType", "categorizationPeriod"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "sheetType", "categorizationPeriod"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +19,7 @@ public class CategorizationSheetEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "categorization_sheet_id")
-    private Integer categorizationSheetId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sheet_type_id")

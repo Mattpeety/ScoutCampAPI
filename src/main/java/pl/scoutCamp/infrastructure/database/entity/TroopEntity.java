@@ -8,8 +8,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "troopId")
-@ToString(of = {"troopId", "regiment", "name"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "regiment", "name"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +20,7 @@ public class TroopEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "troop_id")
-    private Integer troopId;
+    private Integer id;
 
     @Column(name = "name")
     private String name;

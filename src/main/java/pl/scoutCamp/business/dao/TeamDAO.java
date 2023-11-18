@@ -1,6 +1,6 @@
 package pl.scoutCamp.business.dao;
 
-import pl.scoutCamp.domain.exception.Team;
+import pl.scoutCamp.domain.Team;
 
 import java.util.Optional;
 

@@ -7,8 +7,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "assignmentId")
-@ToString(of = {"assignmentId", "assignmentType", "description", "maxPoints", "maxScoringValue"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "assignmentType", "description", "maxPoints", "maxScoringValue"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,7 +18,7 @@ public class AssignmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "assignment_id")
-    private Integer assignmentId;
+    private Integer id;
 
     @Column(name = "assignment_type")
     private String assignmentType;
@@ -40,9 +40,12 @@ public class AssignmentEntity {
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @ManyToMany(mappedBy = "assignments")
-    @JoinColumn(name = "assignment_group_id")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "assignments")
     private Set<AssignmentGroupEntity> assignmentGroups;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "assignment_group_id")
+    private AssignmentGroupEntity assignmentGroup;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "assignment")
     private Set<TeamCategorizationSheetAssignmentEntity> teamCategorizationSheetAssignments;

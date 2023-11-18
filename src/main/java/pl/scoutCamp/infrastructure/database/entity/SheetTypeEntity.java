@@ -8,8 +8,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "sheetTypeId")
-@ToString(of = {"sheetTypeId", "name", "ordered"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "name", "ordered"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +20,7 @@ public class SheetTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sheet_type_id")
-    private Integer sheetTypeId;
+    private Integer id;
 
     @Column(name = "name")
     private String name;

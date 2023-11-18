@@ -7,8 +7,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "categorizationPeriodId")
-@ToString(of = {"categorizationPeriodId", "name"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "name"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +19,7 @@ public class CategorizationPeriodEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "categorization_period_id")
-    private Integer categorizationPeriodId;
+    private Integer id;
 
     @Column(name = "name")
     private String name;

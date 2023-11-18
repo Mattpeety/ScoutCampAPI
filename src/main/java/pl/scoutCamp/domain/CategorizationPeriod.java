@@ -1,4 +1,4 @@
-package pl.scoutCamp.domain.exception;
+package pl.scoutCamp.domain;
 
 import lombok.*;
 

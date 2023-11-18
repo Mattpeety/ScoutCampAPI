@@ -5,8 +5,8 @@ import lombok.*;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "userId")
-@ToString(of = {"userId", "firstName", "lastName"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "firstName", "lastName"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +17,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Integer userId;
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;

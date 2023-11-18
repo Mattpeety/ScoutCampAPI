@@ -1,9 +1,10 @@
 package pl.scoutCamp.infrastructure.database.repository;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.scoutCamp.business.dao.UserDAO;
-import pl.scoutCamp.domain.exception.User;
+import pl.scoutCamp.domain.User;
 import pl.scoutCamp.infrastructure.database.repository.jpa.UserJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.mapper.UserEntityMapper;
 
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserRepository implements UserDAO {
 
     UserJpaRepository userJpaRepository;
