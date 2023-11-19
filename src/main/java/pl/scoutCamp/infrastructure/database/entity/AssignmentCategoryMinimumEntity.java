@@ -18,11 +18,11 @@ public class AssignmentCategoryMinimumEntity {
     @Column(name = "assignment_category_minimum_id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assignment_id")
     private AssignmentEntity assignment;
 

@@ -31,6 +31,6 @@ public class SheetTypeEntity {
     @Column(name = "is_scored_sheet")
     private Boolean isScoredSheet;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sheetType")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sheetType")
     private Set<CategorizationSheetEntity> categorizationSheets;
 }

@@ -37,18 +37,18 @@ public class TeamCategorizationSheetEntity {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categorization_sheet_id")
     private CategorizationSheetEntity categorizationSheet;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private TeamEntity team;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "teamCategorizationSheet")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "teamCategorizationSheet")
     private Set<TeamCategorizationSheetAssignmentEntity> teamCategorizationSheetAssignments;
 }

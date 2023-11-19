@@ -21,17 +21,17 @@ public class CategorizationSheetEntity {
     @Column(name = "categorization_sheet_id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sheet_type_id")
     private SheetTypeEntity sheetType;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categorization_period_id")
     private CategorizationPeriodEntity categorizationPeriod;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "categorizationSheet")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categorizationSheet")
     private Set<AssignmentEntity> assignments;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "categorizationSheet")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categorizationSheet")
     private Set<TeamCategorizationSheetEntity> teamCategorizationSheets;
 }

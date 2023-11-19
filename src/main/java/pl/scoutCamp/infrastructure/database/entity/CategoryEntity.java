@@ -27,12 +27,12 @@ public class CategoryEntity {
     @Column(name = "image_path")
     private String imagePath;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private Set<AssignmentEntity> assignments;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private Set<AssignmentCategoryMinimumEntity> assignmentCategoryMinimums;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private Set<TeamCategorizationSheetEntity> teamCategorizationSheets;
 }

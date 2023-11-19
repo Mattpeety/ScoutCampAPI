@@ -24,6 +24,7 @@ public class TroopService {
     if (troopsInRegiment.isEmpty()) {
         throw new NotFoundException("Could not find troops in regiment by name: [%s]".formatted(regimentName));
     }
+    log.info("Troops: [{}] in Regiment with name: [{}]", troopsInRegiment, regimentName);
     return troopsInRegiment;
 }
 }

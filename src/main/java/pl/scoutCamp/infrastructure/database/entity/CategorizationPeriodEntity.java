@@ -24,6 +24,6 @@ public class CategorizationPeriodEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "categorizationPeriod")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categorizationPeriod")
     private Set<CategorizationSheetEntity> categorizationSheets;
 }
