@@ -28,14 +28,14 @@ public class AssignmentGroupEntity {
     @Column(name = "ordered")
     private Integer ordered;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "assignment_group_assignment_junction",
             joinColumns = {@JoinColumn(name = "assignment_group_id")},
             inverseJoinColumns = {@JoinColumn(name = "assignment_id")}
     )
-    private Set<AssignmentEntity> assignments;
+    private Set<AssignmentEntity> assignmentsManyToMany;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<AssignmentEntity> assignmentss ;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "assignmentGroup")
+    private Set<AssignmentEntity> assignments;
 }

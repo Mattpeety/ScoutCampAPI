@@ -25,11 +25,11 @@ public class TeamCategorizationSheetAssignmentEntity {
     @Column(name = "amount")
     private Integer amount;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assignment_id")
     private AssignmentEntity assignment;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_categorization_sheet_id")
     private TeamCategorizationSheetEntity teamCategorizationSheet;
 }

@@ -25,10 +25,10 @@ public class TroopEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "regiment_id")
     private RegimentEntity regiment;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "troop")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "troop")
     private Set<TeamEntity> teams;
 }

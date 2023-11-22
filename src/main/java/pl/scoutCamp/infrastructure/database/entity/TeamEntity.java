@@ -25,19 +25,19 @@ public class TeamEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "regiment_id")
     private RegimentEntity regiment;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "troop_id")
     private TroopEntity troop;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "team")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "team")
     private Set<TeamCategorizationSheetEntity> teamCategorizationSheets;
 
 }

@@ -32,21 +32,18 @@ public class AssignmentEntity {
     @Column(name = "max_scoring_value")
     private Integer maxScoringValue;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categorization_sheet_id")
     private CategorizationSheetEntity categorizationSheet;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "assignments")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "assignmentsManyToMany")
     private Set<AssignmentGroupEntity> assignmentGroups;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assignment_group_id")
     private AssignmentGroupEntity assignmentGroup;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "assignment")
-    private Set<TeamCategorizationSheetAssignmentEntity> teamCategorizationSheetAssignments;
 }

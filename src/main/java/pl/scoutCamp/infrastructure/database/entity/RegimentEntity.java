@@ -24,9 +24,9 @@ public class RegimentEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "regiment")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "regiment")
     private Set<TroopEntity> troops;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "regiment")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "regiment")
     private Set<TeamEntity> teams;
 }
