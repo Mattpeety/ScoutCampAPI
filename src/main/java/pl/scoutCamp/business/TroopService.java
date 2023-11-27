@@ -17,19 +17,15 @@ public class TroopService {
 
     TroopDAO troopDAO;
 
-@Transactional
+    @Transactional
     public List<Troop> findByRegiment(Integer regimentId) {
-    List<Troop> troopsInRegiment = troopDAO.findByRegimentId(regimentId);
-    if (troopsInRegiment.isEmpty()) {
-        throw new NotFoundException("Could not find troops in regiment by id: [%s]".formatted(regimentId));
+        List<Troop> troopsInRegiment = troopDAO.findByRegimentId(regimentId);
+        if (troopsInRegiment.isEmpty()) {
+            throw new NotFoundException("Could not find troops in regiment by id: [%s]".formatted(regimentId));
+        }
+
+        log.info("Troops: [{}] in Regiment with id: [{}]", troopsInRegiment, regimentId);
+
+        return troopsInRegiment;
     }
-<<<<<<< Updated upstream
-    log.info("Troops: [{}] in Regiment with name: [{}]", troopsInRegiment, regimentName);
-=======
-
-    log.info("Troops: [{}] in Regiment with id: [{}]", troopsInRegiment, regimentId);
-
->>>>>>> Stashed changes
-    return troopsInRegiment;
-}
 }

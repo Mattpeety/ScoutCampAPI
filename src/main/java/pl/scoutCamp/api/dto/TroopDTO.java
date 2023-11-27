@@ -1,6 +1,4 @@
-<<<<<<< Updated upstream
-package pl.scoutCamp.api.dto;public class TroopDTO {
-=======
+
 package pl.scoutCamp.api.dto;
 
 import lombok.AllArgsConstructor;
@@ -18,5 +16,4 @@ public class TroopDTO {
     Integer id;
     String name;
     Regiment regiment;
->>>>>>> Stashed changes
 }

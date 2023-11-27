@@ -1,10 +1,7 @@
-<<<<<<< Updated upstream
-package pl.scoutCamp.infastructure.database.repository.jpa;public class TroopJpaRepositoryTest {
-=======
+
 package pl.scoutCamp.infastructure.database.repository.jpa;
 
 import lombok.AllArgsConstructor;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +66,4 @@ public class TroopJpaRepositoryTest {
         // then
         assertThat(availableTroopsInRegiment).hasSize(3);
     }
-
-
->>>>>>> Stashed changes
 }
