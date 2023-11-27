@@ -25,7 +25,7 @@ public class UserEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private TeamEntity team;
 
 }

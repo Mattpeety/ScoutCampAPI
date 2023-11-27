@@ -23,9 +23,9 @@ public class TroopRestController {
     private final TroopMapper troopMapper;
     private final TroopService troopService;
     public static final String API_TROOP = "/troop";
-    public static final String AVAILABLE_TROOPS_IN_REGIMENT = "/{regimentId}/troops";
+    public static final String TROOPS_IN_REGIMENT = "/{regimentId}/troops";
 
-    @GetMapping(value = AVAILABLE_TROOPS_IN_REGIMENT)
+    @GetMapping(value = TROOPS_IN_REGIMENT)
     public ResponseEntity<TroopsDTO> availableTroops(@PathVariable Integer regimentId) {
         if (Objects.isNull(regimentId)) {
             return ResponseEntity.notFound().build();
