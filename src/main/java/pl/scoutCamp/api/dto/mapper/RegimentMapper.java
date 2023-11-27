@@ -1,6 +1,4 @@
-<<<<<<< Updated upstream
-package pl.scoutCamp.api.dto.mapper;public interface RegimentMapper {
-=======
+
 package pl.scoutCamp.api.dto.mapper;
 
 import org.mapstruct.Mapper;
@@ -11,5 +9,4 @@ import pl.scoutCamp.domain.Regiment;
 public interface RegimentMapper {
 
     RegimentDTO map (Regiment regiment);
->>>>>>> Stashed changes
 }

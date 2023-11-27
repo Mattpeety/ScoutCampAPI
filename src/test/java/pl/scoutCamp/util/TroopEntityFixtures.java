@@ -1,14 +1,12 @@
-<<<<<<< Updated upstream
-package pl.scoutCamp.util;public class TroopEntityFixtures {
-=======
+
+
 package pl.scoutCamp.util;
 
-import lombok.With;
 import lombok.experimental.UtilityClass;
-import pl.scoutCamp.infrastructure.database.entity.RegimentEntity;
 import pl.scoutCamp.infrastructure.database.entity.TroopEntity;
 
-import static pl.scoutCamp.util.RegimentEntityFixtures.*;
+import static pl.scoutCamp.util.RegimentEntityFixtures.someRegiment1;
+import static pl.scoutCamp.util.RegimentEntityFixtures.someRegiment2;
 
 @UtilityClass
 public class TroopEntityFixtures {
@@ -61,5 +59,4 @@ public class TroopEntityFixtures {
                 .build();
     }
 
->>>>>>> Stashed changes
 }
