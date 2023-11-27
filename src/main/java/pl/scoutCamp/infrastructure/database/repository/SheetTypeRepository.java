@@ -1,7 +1,6 @@
 package pl.scoutCamp.infrastructure.database.repository;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.scoutCamp.business.dao.SheetTypeDAO;
 import pl.scoutCamp.domain.SheetType;
@@ -12,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-@NoArgsConstructor
 public class SheetTypeRepository implements SheetTypeDAO {
 
     SheetTypeJpaRepository sheetTypeJpaRepository;

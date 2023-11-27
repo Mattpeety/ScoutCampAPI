@@ -5,11 +5,11 @@ import lombok.*;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "userId")
-@ToString(of = {"userId", "firstName", "lastName"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "firstName", "lastName"})
 public class User {
 
-    Integer userId;
+    Integer id;
     String firstName;
     String lastName;
 }

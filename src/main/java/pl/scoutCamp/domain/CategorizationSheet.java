@@ -6,11 +6,11 @@ import lombok.*;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "CategorizationSheetId")
-@ToString(of = {"CategorizationSheetId", "sheetType", "categorizationPeriod"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "sheetType", "categorizationPeriod"})
 public class CategorizationSheet {
 
-    Integer CategorizationSheetId;
+    Integer id;
     SheetType sheetType;
     CategorizationPeriod categorizationPeriod;
 }

@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserRepository implements UserDAO {
 
     UserJpaRepository userJpaRepository;

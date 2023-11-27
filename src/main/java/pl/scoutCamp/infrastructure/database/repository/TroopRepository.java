@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.scoutCamp.business.dao.TroopDAO;
 import pl.scoutCamp.domain.Troop;
+import pl.scoutCamp.infrastructure.database.entity.TroopEntity;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TroopJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.mapper.TroopEntityMapper;
 
@@ -13,11 +14,11 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-@NoArgsConstructor
-public class TroopRepository implements TroopDAO {
+public class TroopRepository implements TroopDAO{
 
-    TroopJpaRepository troopJpaRepository;
-    TroopEntityMapper troopEntityMapper;
+    private final TroopJpaRepository troopJpaRepository;
+
+    private final TroopEntityMapper troopEntityMapper;
 
     @Override
     public Optional<Troop> findTroopByName(String name) {
@@ -26,10 +27,32 @@ public class TroopRepository implements TroopDAO {
     }
 
     @Override
-    public List<Troop> findByRegimentName(String regimentName) {
-        return troopJpaRepository.findByRegimentName(regimentName)
-                .stream().map(troopEntityMapper::mapFromEntity)
+    public List<Troop> findByRegimentId(Integer regimentId) {
+        return troopJpaRepository
+                .findAll().stream()
+                .map(troopEntityMapper::mapFromEntity)
+                .filter(troop -> troop.getRegiment().getId().equals(regimentId))
                 .toList();
     }
+
+
+//    @Override
+//    public List<Troop> findByRegimentName(String regimentName) {
+//        return troopJpaRepository
+//                .findAll().stream()
+//                .map(troopEntityMapper::mapFromEntity)
+//                .filter(troop -> troop.getRegiment().getName().equals(regimentName))
+//                .toList();
+//    }
+
+
+//    @Override
+//    public List<Troop> findByRegimentName(String regimentName) {
+//        return troopJpaRepository.findByRegimentName(regimentName)
+//                .stream().map(troopEntityMapper::mapFromEntity)
+//                .toList();
+//    }
+
+
 
 }

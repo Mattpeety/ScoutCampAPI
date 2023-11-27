@@ -13,5 +13,4 @@ public interface TroopJpaRepository extends JpaRepository<TroopEntity, Integer> 
 
     Optional<TroopEntity> findTroopByName (String name);
 
-    List<TroopEntity> findByRegimentName(String regimentName);
 }

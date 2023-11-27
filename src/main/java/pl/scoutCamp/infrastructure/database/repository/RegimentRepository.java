@@ -1,7 +1,6 @@
 package pl.scoutCamp.infrastructure.database.repository;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.scoutCamp.business.dao.RegimentDAO;
 import pl.scoutCamp.domain.Regiment;
@@ -13,11 +12,11 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-@NoArgsConstructor
 public class RegimentRepository implements RegimentDAO {
 
-    RegimentJpaRepository regimentJpaRepository;
-     RegimentEntityMapper regimentEntityMapper;
+
+    private final RegimentJpaRepository regimentJpaRepository;
+    private final RegimentEntityMapper regimentEntityMapper;
 
     @Override
     public Optional<Regiment> findRegimentByName(String name) {

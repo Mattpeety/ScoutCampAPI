@@ -2,6 +2,7 @@ package pl.scoutCamp.infrastructure.database.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.Set;
@@ -20,6 +21,7 @@ public class TroopEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "troop_id")
+    @NotNull
     private Integer id;
 
     @Column(name = "name")

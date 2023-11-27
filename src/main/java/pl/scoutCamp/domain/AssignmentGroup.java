@@ -5,11 +5,11 @@ import lombok.*;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "assignmentGroupId")
-@ToString(of = {"assignmentGroupId", "name", "ordered"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "name", "ordered"})
 public class AssignmentGroup {
 
-    Integer assignmentGroupId;
+    Integer id;
     String name;
     Integer ordered;
 }
