@@ -7,12 +7,12 @@ import java.util.Set;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "assignmentId")
-@ToString(of = {"assignmentId", "assignmentType", "description", "maxPoints",
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "assignmentType", "description", "maxPoints",
                 "maxScoringValue", "categorizationSheet", "category"})
 public class Assignment {
 
-    Integer assignmentId;
+    Integer id;
     String assignmentType;
     String description;
     Integer maxPoints;

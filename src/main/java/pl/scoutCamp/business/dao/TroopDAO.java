@@ -9,7 +9,9 @@ import java.util.Optional;
 
 public interface TroopDAO {
 
+
+
     Optional<Troop> findTroopByName(String name);
 
-    List<Troop> findByRegimentName(String regimentName);
+    List<Troop> findByRegimentId(Integer regimentId);
 }

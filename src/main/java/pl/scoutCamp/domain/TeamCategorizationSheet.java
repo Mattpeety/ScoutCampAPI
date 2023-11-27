@@ -7,12 +7,12 @@ import java.sql.Timestamp;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "teamCategorizationSheetId")
-@ToString(of = {"teamCategorizationSheetId", "isDraft", "points", "createdAt",
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "isDraft", "points", "createdAt",
         "updatedAt", "categorizationSheet", "team", "category"})
 public class TeamCategorizationSheet {
 
-    Integer teamCategorizationSheetId;
+    Integer id;
     Boolean isDraft;
     Integer points;
     Timestamp createdAt;

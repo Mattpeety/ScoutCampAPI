@@ -5,10 +5,10 @@ import lombok.*;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "categorizationPeriodId")
-@ToString(of = {"categorizationPeriodId", "name"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "name"})
 public class CategorizationPeriod {
 
-    Integer categorizationPeriodId;
+    Integer id;
     String name;
 }

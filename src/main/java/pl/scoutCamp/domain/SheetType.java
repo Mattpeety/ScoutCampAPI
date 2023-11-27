@@ -5,11 +5,11 @@ import lombok.*;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "sheetTypeId")
-@ToString(of = {"sheetTypeId", "name", "ordered", "isScoredSheet"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "name", "ordered", "isScoredSheet"})
 public class SheetType {
 
-    Integer sheetTypeId;
+    Integer id;
     String name;
     Integer ordered;
     Boolean isScoredSheet;

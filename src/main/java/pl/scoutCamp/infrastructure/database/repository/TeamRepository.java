@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-@NoArgsConstructor
 public class TeamRepository implements TeamDAO {
 
     TeamJpaRepository teamJpaRepository;

@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-@NoArgsConstructor
 public class AssignmentCategoryMinimumRepository  implements AssignmentCategoryMinimumDAO {
 
     AssignmentCategoryMinimumJpaRepository assignmentCategoryMinimumJpaRepository;

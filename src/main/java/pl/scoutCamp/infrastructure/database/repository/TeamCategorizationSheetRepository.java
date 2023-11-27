@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-@NoArgsConstructor
 public class TeamCategorizationSheetRepository implements TeamCategorizationSheetDAO {
 
     TeamCategorizationSheetJpaRepository teamCategorizationSheetJpaRepository;

@@ -5,10 +5,10 @@ import lombok.*;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "regimentId")
-@ToString(of = {"regimentId", "name"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "name"})
 public class Regiment {
 
-    Integer regimentId;
+    Integer id;
     String name;
 }

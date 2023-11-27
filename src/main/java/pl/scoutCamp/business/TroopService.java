@@ -16,15 +16,20 @@ import java.util.List;
 public class TroopService {
 
     TroopDAO troopDAO;
-    RegimentService regimentService;
 
 @Transactional
-    public List<Troop> findByRegimentName(String regimentName) {
-    List<Troop> troopsInRegiment = troopDAO.findByRegimentName(regimentName);
+    public List<Troop> findByRegiment(Integer regimentId) {
+    List<Troop> troopsInRegiment = troopDAO.findByRegimentId(regimentId);
     if (troopsInRegiment.isEmpty()) {
-        throw new NotFoundException("Could not find troops in regiment by name: [%s]".formatted(regimentName));
+        throw new NotFoundException("Could not find troops in regiment by id: [%s]".formatted(regimentId));
     }
+<<<<<<< Updated upstream
     log.info("Troops: [{}] in Regiment with name: [{}]", troopsInRegiment, regimentName);
+=======
+
+    log.info("Troops: [{}] in Regiment with id: [{}]", troopsInRegiment, regimentId);
+
+>>>>>>> Stashed changes
     return troopsInRegiment;
 }
 }

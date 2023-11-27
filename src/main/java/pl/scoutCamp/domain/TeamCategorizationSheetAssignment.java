@@ -5,12 +5,12 @@ import lombok.*;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "teamCategorizationSheetAssignmentId")
-@ToString(of = {"teamCategorizationSheetAssignmentId", "isCompleted",
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "isCompleted",
         "amount", "assignment", "teamCategorizationSheet"})
 public class TeamCategorizationSheetAssignment {
 
-    Integer teamCategorizationSheetAssignmentId;
+    Integer id;
     Boolean isCompleted;
     Integer amount;
     Assignment assignment;

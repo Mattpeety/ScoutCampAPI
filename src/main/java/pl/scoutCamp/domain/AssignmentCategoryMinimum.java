@@ -5,11 +5,11 @@ import lombok.*;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "assignmentCategoryMinimumId")
-@ToString(of = {"assignmentCategoryMinimumId", "category", "assignment"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "category", "assignment"})
 public class AssignmentCategoryMinimum {
 
-    Integer assignmentCategoryMinimumId;
+    Integer id;
     Category category;
     Assignment assignment;
 }

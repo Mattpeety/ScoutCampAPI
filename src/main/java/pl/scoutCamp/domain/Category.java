@@ -5,11 +5,11 @@ import lombok.*;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "categoryId")
-@ToString(of = {"categoryId", "name", "imagePath"})
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id", "name", "imagePath"})
 public class Category {
 
-    Integer categoryId;
+    Integer id;
     String name;
     String imagePath;
 }
