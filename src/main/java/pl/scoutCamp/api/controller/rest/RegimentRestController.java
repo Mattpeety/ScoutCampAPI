@@ -21,20 +21,20 @@ public class RegimentRestController {
     private final RegimentMapper regimentMapper;
 
     public static final String REGIMENT = "/regiment";
-    public static final String AVAILABLE_REGIMENTS = "/regiments";
+    public static final String ALL_REGIMENTS = "/regiments";
 
-    @GetMapping(value = AVAILABLE_REGIMENTS)
+    @GetMapping(value = ALL_REGIMENTS)
     public RegimentsDTO availableRegiments() {
         return getRegimentsDTO();
     }
 
     private RegimentsDTO getRegimentsDTO() {
         return RegimentsDTO.builder()
-                .regiments(getAvailableRegimentsDTO())
+                .regiments(getAllRegimentsDTO())
                 .build();
     }
 
-    private List<RegimentDTO> getAvailableRegimentsDTO() {
+    private List<RegimentDTO> getAllRegimentsDTO() {
         return regimentService.findAvailableRegiments().stream()
                 .map(regimentMapper::map)
                 .toList();

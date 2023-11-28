@@ -1,7 +1,6 @@
 package pl.scoutCamp.infastructure.database.repository.jpa;
 
 import lombok.AllArgsConstructor;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import pl.scoutCamp.infrastructure.database.entity.RegimentEntity;
 import pl.scoutCamp.infrastructure.database.entity.TeamEntity;
-import pl.scoutCamp.infrastructure.database.entity.UserEntity;
 import pl.scoutCamp.infrastructure.database.repository.jpa.RegimentJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TeamJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TroopJpaRepository;
@@ -21,10 +19,11 @@ import pl.scoutCamp.integration.configuration.PersistenceContainerTestConfigurat
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static pl.scoutCamp.util.RegimentEntityFixtures.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static pl.scoutCamp.util.RegimentEntityFixtures.someRegiment1;
 import static pl.scoutCamp.util.TeamEntityFixtures.*;
-import static pl.scoutCamp.util.TroopEntityFixtures.*;
+import static pl.scoutCamp.util.TroopEntityFixtures.someTroop1;
+import static pl.scoutCamp.util.TroopEntityFixtures.someTroop2;
 import static pl.scoutCamp.util.UserEntityFixtures.*;
 
 @DataJpaTest
