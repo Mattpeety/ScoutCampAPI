@@ -14,4 +14,6 @@ public interface TroopDAO {
     Optional<Troop> findTroopByName(String name);
 
     List<Troop> findByRegimentId(Integer regimentId);
+
+
 }

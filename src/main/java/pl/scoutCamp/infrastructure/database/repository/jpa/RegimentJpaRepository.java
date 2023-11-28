@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface RegimentJpaRepository extends JpaRepository<RegimentEntity, Integer>{
     
     Optional<RegimentEntity> findRegimentByName(String name);
+    Optional<RegimentEntity> findRegimentById(Integer regimentId);
 
 }

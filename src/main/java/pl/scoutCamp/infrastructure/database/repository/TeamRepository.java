@@ -42,6 +42,7 @@ public class TeamRepository implements TeamDAO {
                 .toList();
     }
 
+    // Try to create Query Method to get list of Teams under one Regiment/Troop.
     @Override
     public List<Team> findTeamsByTroopId(Integer troopId) {
         return findTeams().stream()

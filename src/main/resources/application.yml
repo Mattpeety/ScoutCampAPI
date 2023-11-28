@@ -25,3 +25,6 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+  jackson:
+    mapper:
+      default-view-inclusion: true

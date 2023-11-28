@@ -36,23 +36,4 @@ public class TroopRepository implements TroopDAO{
     }
 
 
-//    @Override
-//    public List<Troop> findByRegimentName(String regimentName) {
-//        return troopJpaRepository
-//                .findAll().stream()
-//                .map(troopEntityMapper::mapFromEntity)
-//                .filter(troop -> troop.getRegiment().getName().equals(regimentName))
-//                .toList();
-//    }
-
-
-//    @Override
-//    public List<Troop> findByRegimentName(String regimentName) {
-//        return troopJpaRepository.findByRegimentName(regimentName)
-//                .stream().map(troopEntityMapper::mapFromEntity)
-//                .toList();
-//    }
-
-
-
 }
