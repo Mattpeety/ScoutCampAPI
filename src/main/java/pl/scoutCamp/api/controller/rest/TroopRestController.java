@@ -1,5 +1,6 @@
 package pl.scoutCamp.api.controller.rest;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class TroopRestController {
     public static final String API_TROOP = "/troop";
     public static final String TROOPS_IN_REGIMENT = "/{regimentId}/troops";
 
+    @JsonView(JsonViews.NoRegimentView.class)
     @GetMapping(value = TROOPS_IN_REGIMENT)
     public ResponseEntity<TroopsDTO> availableTroops(@PathVariable Integer regimentId) {
         if (Objects.isNull(regimentId)) {

@@ -1,5 +1,6 @@
 package pl.scoutCamp.api.controller.rest;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,9 @@ public class TeamRestController {
         return getTeamsDTO();
     }
 
+
     @GetMapping(value = TEAMS_IN_REGIMENT)
+    @JsonView(JsonViews.NoRegimentView.class)
     public ResponseEntity<TeamsDTO> findTeamsInRegiment(@PathVariable Integer regimentId) {
         if (Objects.isNull(regimentId)) {
             return ResponseEntity.notFound().build();
@@ -41,6 +44,7 @@ public class TeamRestController {
         return ResponseEntity.ok(getRegimentTeamsDTO(regimentId));
     }
 
+    @JsonView(JsonViews.NoTroopView.class)
     @GetMapping(value = TEAMS_IN_TROOP)
     public ResponseEntity<TeamsDTO> findTeamsInTroop(@PathVariable Integer troopId) {
         if (Objects.isNull(troopId)) {
@@ -76,22 +80,27 @@ public class TeamRestController {
                 .build();
     }
 
+
     private List<TeamDTO> getRegimentAllTeamsDTO(Integer regimentId) {
-        return teamService.findTeamsByRegimentId(regimentId).stream()
+
+        List<TeamDTO> teams = teamService.findTeamsByRegimentId(regimentId)
+                .stream()
                 .map(teamMapper::map)
                 .toList();
+        return teams;
     }
 
     private TeamsDTO getTroopTeamsDTO(Integer troopId) {
         return TeamsDTO.builder()
-                .teams(getAllTroopTeamsDTO(troopId))
+                .teams(getTroopAllTeamsDTO(troopId))
                 .build();
     }
 
-    private List<TeamDTO> getAllTroopTeamsDTO(Integer troopId) {
-        return teamService.findTeamsByTroopId(troopId).stream()
+    private List<TeamDTO> getTroopAllTeamsDTO(Integer troopId) {
+        List<TeamDTO> teams = teamService.findTeamsByTroopId(troopId).stream()
                 .map(teamMapper::map)
                 .toList();
+        return teams;
     }
 
     private TeamsDTO getUserTeamsDTO(Integer userId) {

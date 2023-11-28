@@ -53,9 +53,9 @@ public class RegimentJpaRepositoryTest {
         regimentJpaRepository.saveAndFlush(regiment);
 
         // when
-        Optional<RegimentEntity> regimentByName = regimentJpaRepository.findRegimentByName(regiment.getName());
+        Optional<RegimentEntity> regimentById = regimentJpaRepository.findRegimentById(regiment.getId());
 
         // then
-        assertThat(regimentByName.map(RegimentEntity::getName).orElse(null)).isEqualTo(regiment.getName());
+        assertThat(regimentById.map(RegimentEntity::getId).orElse(null)).isEqualTo(regiment.getId());
     }
 }

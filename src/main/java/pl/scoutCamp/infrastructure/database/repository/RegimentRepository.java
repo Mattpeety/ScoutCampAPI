@@ -25,6 +25,12 @@ public class RegimentRepository implements RegimentDAO {
     }
 
     @Override
+    public Optional<Regiment> findRegimentById(Integer regimentId) {
+        return regimentJpaRepository.findRegimentById(regimentId)
+                .map(regimentEntityMapper::mapFromEntity);
+    }
+
+    @Override
     public List<Regiment> findAvailable() {
         return regimentJpaRepository.findAll().stream()
                 .map(regimentEntityMapper::mapFromEntity)
