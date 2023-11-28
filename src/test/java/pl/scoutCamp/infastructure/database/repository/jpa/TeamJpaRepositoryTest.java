@@ -11,6 +11,8 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import pl.scoutCamp.infrastructure.database.entity.RegimentEntity;
 import pl.scoutCamp.infrastructure.database.entity.TeamEntity;
+import pl.scoutCamp.infrastructure.database.entity.TroopEntity;
+import pl.scoutCamp.infrastructure.database.entity.UserEntity;
 import pl.scoutCamp.infrastructure.database.repository.jpa.RegimentJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TeamJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TroopJpaRepository;
@@ -58,6 +60,54 @@ public class TeamJpaRepositoryTest {
 
         // then
         assertThat(availableTeams).hasSize(3);
+    }
+
+    @Test
+    void thatTeamInRegimentCanBeSavedCorrectly() {
+        // given
+        RegimentEntity regiment = someRegiment1();
+
+        // when
+        List<TeamEntity> availableTeamsInRegiment = teamJpaRepository
+                .findAll()
+                .stream()
+                .filter(team -> team.getRegiment().getName().equals(regiment.getName()))
+                .toList();
+
+        // then
+        assertThat(availableTeamsInRegiment).hasSize(3);
+    }
+
+    @Test
+    void thatTeamInTroopCanBeSavedCorrectly() {
+        // given
+        TroopEntity troop = someTroop1();
+
+        // when
+        List<TeamEntity> availableTeamsInTroop = teamJpaRepository
+                .findAll()
+                .stream()
+                .filter(team -> team.getTroop().getName().equals(troop.getName()))
+                .toList();
+
+        // then
+        assertThat(availableTeamsInTroop).hasSize(2);
+    }
+
+    @Test
+    void thatTeamOfUserpCanBeSavedCorrectly() {
+        // given
+        UserEntity user = someUser1();
+
+        // when
+        List<TeamEntity> availableTeamsOfUser = teamJpaRepository
+                .findAll()
+                .stream()
+                .filter(team -> team.getUser().getId().equals(user.getId()))
+                .toList();
+
+        // then
+        assertThat(availableTeamsOfUser).hasSize(1);
     }
 
 
