@@ -36,21 +36,21 @@ public class TeamRepository implements TeamDAO {
 
 
     @Override
-    public List<Team> findTeamByRegimentId(Integer regimentId) {
+    public List<Team> findTeamsByRegimentId(Integer regimentId) {
         return findTeams().stream()
                 .filter(team -> team.getRegiment().getId().equals(regimentId))
                 .toList();
     }
 
     @Override
-    public List<Team> findTeamByTroopId(Integer troopId) {
+    public List<Team> findTeamsByTroopId(Integer troopId) {
         return findTeams().stream()
                 .filter(team -> team.getTroop().getId().equals(troopId))
                 .toList();
     }
 
     @Override
-    public List<Team> findTeamByUserId(Integer userId) {
+    public List<Team> findTeamsByUserId(Integer userId) {
         return findTeams().stream()
                 .filter(user -> user.getUser().getId().equals(userId))
                 .toList();

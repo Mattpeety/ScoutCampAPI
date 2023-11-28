@@ -11,7 +11,7 @@ public interface TeamDAO {
     Optional<Team> findTeamByName(String name);
     List<Team> findTeams();
 
-    List<Team> findTeamByRegimentId (Integer regimentId);
-    List<Team> findTeamByTroopId (Integer troopId);
-    List<Team> findTeamByUserId (Integer userId);
+    List<Team> findTeamsByRegimentId (Integer regimentId);
+    List<Team> findTeamsByTroopId (Integer troopId);
+    List<Team> findTeamsByUserId(Integer userId);
 }
