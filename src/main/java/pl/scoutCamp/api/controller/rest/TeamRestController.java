@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.scoutCamp.api.dto.TeamDTO;
-import pl.scoutCamp.api.dto.TeamsDTO;
+import pl.scoutCamp.api.dto.dtoList.TeamsDTO;
 import pl.scoutCamp.api.dto.mapper.TeamMapper;
 import pl.scoutCamp.business.TeamService;
 

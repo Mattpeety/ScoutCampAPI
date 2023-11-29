@@ -8,6 +8,7 @@ import pl.scoutCamp.domain.CategorizationPeriod;
 import pl.scoutCamp.infrastructure.database.repository.jpa.CategorizationPeriodJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.mapper.CategorizationPeriodEntityMapper;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,4 +22,14 @@ public class CategorizationPeriodRepository implements CategorizationPeriodDAO {
         return categorizationPeriodJpaRepository.findCategorizationPeriodByName(name)
                 .map(categorizationPeriodEntityMapper::mapFromEntity);
     }
+
+    @Override
+    public List<CategorizationPeriod> findAvailable() {
+        return categorizationPeriodJpaRepository.findAll()
+                .stream()
+                .map(categorizationPeriodEntityMapper::mapFromEntity)
+                .toList();
+    }
+
+
 }

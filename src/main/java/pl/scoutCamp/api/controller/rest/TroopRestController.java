@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.scoutCamp.api.dto.TroopDTO;
-import pl.scoutCamp.api.dto.TroopsDTO;
-
+import pl.scoutCamp.api.dto.dtoList.TroopsDTO;
 import pl.scoutCamp.api.dto.mapper.TroopMapper;
 import pl.scoutCamp.business.TroopService;
 
@@ -36,12 +35,12 @@ public class TroopRestController {
     }
 
     private TroopsDTO getTroopsDTO(Integer regimentId) {
-        return TroopsDTO.builder()
-                .troops(getAvailableTroopsDTO(regimentId))
-                .build();
+            return TroopsDTO.builder()
+                    .troops(getAllTroopsDTO(regimentId))
+                    .build();
     }
 
-    private List<TroopDTO> getAvailableTroopsDTO(Integer regimentId) {
+    private List<TroopDTO> getAllTroopsDTO(Integer regimentId) {
         return troopService.findByRegiment(regimentId).stream()
                 .map(troopMapper::map)
                 .toList();
