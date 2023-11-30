@@ -69,7 +69,7 @@ public class TeamRestController {
     }
 
     private List<TeamDTO> getAllTeamsDTO() {
-        return teamService.findAllTeams().stream()
+        return teamService.findAvailableTeams().stream()
                 .map(teamMapper::map)
                 .toList();
     }
