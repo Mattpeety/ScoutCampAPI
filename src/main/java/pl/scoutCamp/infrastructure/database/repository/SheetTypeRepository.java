@@ -7,6 +7,7 @@ import pl.scoutCamp.domain.SheetType;
 import pl.scoutCamp.infrastructure.database.repository.jpa.SheetTypeJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.mapper.SheetTypeEntityMapper;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,5 +22,12 @@ public class SheetTypeRepository implements SheetTypeDAO {
     public Optional<SheetType> findSheetTypeByName(String name) {
         return sheetTypeJpaRepository.findSheetTypeByName(name)
                 .map(sheetTypeEntityMapper::mapFromEntity);
+    }
+
+    @Override
+    public List<SheetType> findSheetTypes() {
+        return sheetTypeJpaRepository.findAll()
+                .stream().map(sheetTypeEntityMapper::mapFromEntity)
+                .toList();
     }
 }

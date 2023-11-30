@@ -15,10 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 public class TeamService {
 
-    TeamDAO teamDAO;
+   private final TeamDAO teamDAO;
 
     @Transactional
-    public List<Team> findAllTeams() {
+    public List<Team> findAvailableTeams() {
         List<Team> allTeams = teamDAO.findTeams();
         if (allTeams.isEmpty()) {
             throw new NotFoundException("Could not find any team");

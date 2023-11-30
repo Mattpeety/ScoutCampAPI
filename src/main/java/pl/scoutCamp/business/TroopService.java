@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class TroopService {
 
-    TroopDAO troopDAO;
+   private final TroopDAO troopDAO;
 
     @Transactional
     public List<Troop> findByRegiment(Integer regimentId) {

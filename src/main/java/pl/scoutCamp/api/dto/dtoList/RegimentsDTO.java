@@ -1,9 +1,10 @@
-package pl.scoutCamp.api.dto;
+package pl.scoutCamp.api.dto.dtoList;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.scoutCamp.api.dto.RegimentDTO;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeamsDTO {
+public class RegimentsDTO {
 
-    private List<TeamDTO> teams;
+    private List<RegimentDTO> regiments;
 }
