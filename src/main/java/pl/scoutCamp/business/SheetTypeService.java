@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class SheetTypeService {
 
-    SheetTypeDAO sheetTypeDAO;
+    private final SheetTypeDAO sheetTypeDAO;
 
     @Transactional
     public List<SheetType> findAvailableSheetTypes() {

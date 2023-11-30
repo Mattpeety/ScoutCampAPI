@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class TeamService {
 
-    TeamDAO teamDAO;
+   private final TeamDAO teamDAO;
 
     @Transactional
     public List<Team> findAvailableTeams() {

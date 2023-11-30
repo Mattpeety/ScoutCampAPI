@@ -8,6 +8,7 @@ import pl.scoutCamp.domain.Category;
 import pl.scoutCamp.infrastructure.database.repository.jpa.CategoryJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.mapper.CategoryEntityMapper;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,8 +19,9 @@ public class CategoryRepository implements CategoryDAO {
     CategoryEntityMapper categoryEntityMapper;
 
     @Override
-    public Optional<Category> findCategoryByName(String name) {
-        return categoryJpaRepository.findCategoryByName(name)
-                .map(categoryEntityMapper::mapFromEntity);
+    public List<Category> findCategories() {
+        return categoryJpaRepository.findAll().stream()
+                .map(categoryEntityMapper::mapFromEntity)
+                .toList();
     }
 }
