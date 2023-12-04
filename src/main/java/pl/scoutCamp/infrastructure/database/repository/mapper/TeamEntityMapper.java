@@ -9,4 +9,6 @@ import pl.scoutCamp.infrastructure.database.entity.TeamEntity;
 public interface TeamEntityMapper {
 
     Team mapFromEntity(TeamEntity team);
+
+    TeamEntity mapToEntity (Team team);
 }

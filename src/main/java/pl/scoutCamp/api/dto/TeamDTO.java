@@ -24,4 +24,5 @@ public class TeamDTO {
     TroopDTO troop;
     @JsonView(value = {JsonViews.NoTroopView.class})
     UserDTO user;
+
 }

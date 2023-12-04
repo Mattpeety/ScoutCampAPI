@@ -17,11 +17,13 @@ import java.util.List;
 @RequestMapping(RegimentRestController.API_REGIMENT)
 public class RegimentRestController {
 
+    public static final String API_REGIMENT = "/regiment";
+    public static final String ALL_REGIMENTS = "/regiments";
+
     private final RegimentService regimentService;
     private final RegimentMapper regimentMapper;
 
-    public static final String API_REGIMENT = "/regiment";
-    public static final String ALL_REGIMENTS = "/regiments";
+
 
     @GetMapping(value = ALL_REGIMENTS)
     public RegimentsDTO availableRegiments() {

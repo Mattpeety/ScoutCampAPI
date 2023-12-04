@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import pl.scoutCamp.business.dao.TeamDAO;
 import pl.scoutCamp.domain.Team;
 import pl.scoutCamp.domain.exception.NotFoundException;
+import pl.scoutCamp.infrastructure.database.entity.TeamEntity;
 
 import java.util.List;
 
@@ -55,5 +56,11 @@ public class TeamService {
         }
         log.info("Teams: [{}] of User with id [{}]", teamsOfUser, userId);
         return teamsOfUser;
+    }
+
+
+    @Transactional
+    public TeamEntity createNewTeam(Team team) {
+        return teamDAO.saveNewTeam(team);
     }
 }

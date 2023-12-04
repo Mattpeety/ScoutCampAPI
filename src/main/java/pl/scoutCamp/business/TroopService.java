@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import pl.scoutCamp.business.dao.TroopDAO;
 import pl.scoutCamp.domain.Troop;
 import pl.scoutCamp.domain.exception.NotFoundException;
+import pl.scoutCamp.infrastructure.database.entity.TroopEntity;
 
 import java.util.List;
 
@@ -27,5 +28,10 @@ public class TroopService {
         log.info("Troops: [{}] in Regiment with id: [{}]", troopsInRegiment, regimentId);
 
         return troopsInRegiment;
+    }
+
+    @Transactional
+    public TroopEntity createNewTroop(Troop troop) {
+        return troopDAO.saveNewTroop(troop);
     }
 }

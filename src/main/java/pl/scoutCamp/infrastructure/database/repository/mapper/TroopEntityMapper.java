@@ -2,6 +2,7 @@ package pl.scoutCamp.infrastructure.database.repository.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import pl.scoutCamp.api.dto.mapper.TroopMapper;
 import pl.scoutCamp.domain.Troop;
 import pl.scoutCamp.infrastructure.database.entity.TroopEntity;
 
@@ -9,4 +10,6 @@ import pl.scoutCamp.infrastructure.database.entity.TroopEntity;
 public interface TroopEntityMapper {
 
     Troop mapFromEntity(TroopEntity troop);
+
+    TroopEntity mapToEntity (Troop troop);
 }

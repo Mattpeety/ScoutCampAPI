@@ -8,4 +8,6 @@ import pl.scoutCamp.domain.Troop;
 public interface TroopMapper{
 
     TroopDTO map(Troop troop);
+
+    Troop map(final TroopDTO troopDTO);
 }

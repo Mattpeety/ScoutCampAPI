@@ -1,17 +1,18 @@
 package pl.scoutCamp.api.controller.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.scoutCamp.api.dto.TeamDTO;
 import pl.scoutCamp.api.dto.dtoList.TeamsDTO;
 import pl.scoutCamp.api.dto.mapper.TeamMapper;
 import pl.scoutCamp.business.TeamService;
+import pl.scoutCamp.domain.Team;
+import pl.scoutCamp.infrastructure.database.entity.TeamEntity;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,14 +21,17 @@ import java.util.Objects;
 @RequestMapping(TeamRestController.API_TEAM)
 public class TeamRestController {
 
-    private final TeamMapper teamMapper;
-    private final TeamService teamService;
-
     public static final String API_TEAM = "/team";
     public static final String ALL_TEAMS = "/teams";
     public static final String TEAMS_IN_REGIMENT = "/regiment{regimentId}/teams";
     public static final String TEAMS_IN_TROOP = "/troop{troopId}/teams";
     public static final String TEAMS_OF_USER = "/user{userId}/teams";
+    public static final String NEW_TEAM = "/newTeam";
+    public static final String TEAM_RESULT = "/%s";
+
+    private final TeamMapper teamMapper;
+    private final TeamService teamService;
+
 
     @GetMapping(value = ALL_TEAMS)
     public TeamsDTO findAllTeams() {
@@ -61,6 +65,13 @@ public class TeamRestController {
         return ResponseEntity.ok(getUserTeamsDTO(userId));
     }
 
+    @PostMapping(value = NEW_TEAM)
+    public ResponseEntity<TeamDTO> addTeam(@Valid @RequestBody TeamDTO teamDTO) {
+        Team team = teamMapper.map(teamDTO);
+        TeamEntity newTeam = teamService.createNewTeam(team);
+        return ResponseEntity.created(URI.create(API_TEAM + TEAM_RESULT.formatted(newTeam.getId()))).build();
+    }
+
 
     private TeamsDTO getTeamsDTO() {
         return TeamsDTO.builder()
@@ -83,11 +94,10 @@ public class TeamRestController {
 
     private List<TeamDTO> getRegimentAllTeamsDTO(Integer regimentId) {
 
-        List<TeamDTO> teams = teamService.findTeamsByRegimentId(regimentId)
+        return teamService.findTeamsByRegimentId(regimentId)
                 .stream()
                 .map(teamMapper::map)
                 .toList();
-        return teams;
     }
 
     private TeamsDTO getTroopTeamsDTO(Integer troopId) {
@@ -97,10 +107,9 @@ public class TeamRestController {
     }
 
     private List<TeamDTO> getTroopAllTeamsDTO(Integer troopId) {
-        List<TeamDTO> teams = teamService.findTeamsByTroopId(troopId).stream()
+        return teamService.findTeamsByTroopId(troopId).stream()
                 .map(teamMapper::map)
                 .toList();
-        return teams;
     }
 
     private TeamsDTO getUserTeamsDTO(Integer userId) {

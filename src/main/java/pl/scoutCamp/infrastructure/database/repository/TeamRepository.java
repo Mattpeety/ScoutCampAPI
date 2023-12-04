@@ -1,18 +1,16 @@
 package pl.scoutCamp.infrastructure.database.repository;
 
+import io.micrometer.observation.Observation;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.scoutCamp.business.dao.TeamDAO;
-import pl.scoutCamp.domain.Regiment;
 import pl.scoutCamp.domain.Team;
-import pl.scoutCamp.infrastructure.database.entity.RegimentEntity;
+import pl.scoutCamp.infrastructure.database.entity.TeamEntity;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TeamJpaRepository;
-import pl.scoutCamp.infrastructure.database.repository.mapper.RegimentEntityMapper;
 import pl.scoutCamp.infrastructure.database.repository.mapper.TeamEntityMapper;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Repository
 @AllArgsConstructor
@@ -55,6 +53,13 @@ public class TeamRepository implements TeamDAO {
         return findTeams().stream()
                 .filter(user -> user.getUser().getId().equals(userId))
                 .toList();
+    }
+
+    @Override
+    public TeamEntity saveNewTeam(Team team) {
+        TeamEntity newTeam = teamEntityMapper.mapToEntity(team);
+        teamJpaRepository.saveAndFlush(newTeam);
+        return newTeam;
     }
 
 

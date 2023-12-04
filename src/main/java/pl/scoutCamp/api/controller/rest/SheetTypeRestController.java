@@ -16,11 +16,13 @@ import java.util.List;
 @RequestMapping(SheetTypeRestController.API_SHEET_TYPE)
 public class SheetTypeRestController {
 
+    public static final String API_SHEET_TYPE = "/sheetType";
+    public static final String ALL_SHEET_TYPES = "/sheetTypes";
+
     private final SheetTypeService sheetTypeService;
     private final SheetTypeMapper sheetTypeMapper;
 
-    public static final String API_SHEET_TYPE = "/sheetType";
-    public static final String ALL_SHEET_TYPES = "/sheetTypes";
+
 
     @GetMapping(value = ALL_SHEET_TYPES)
     public SheetTypesDTO findAllSheetTypes() {

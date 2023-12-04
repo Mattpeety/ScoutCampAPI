@@ -17,11 +17,13 @@ import java.util.List;
 @RequestMapping(CategoryRestController.API_CATEGORY)
 public class CategoryRestController {
 
+    public static final String API_CATEGORY = "/category";
+    public static final String ALL_CATEGORIES = "/categories";
+
     private final CategoryService categoryService;
     private final CategoryMapper categoryMapper;
 
-    public static final String API_CATEGORY = "/category";
-    public static final String ALL_CATEGORIES = "/categories";
+
 
     @GetMapping(value = ALL_CATEGORIES)
     public CategoriesDTO availableCategories() {

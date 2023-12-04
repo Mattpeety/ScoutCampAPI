@@ -3,6 +3,8 @@ package pl.scoutCamp.infrastructure.database.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
@@ -25,7 +27,7 @@ public class UserEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
-    private TeamEntity team;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+private List<TeamEntity> teams;
 
 }
