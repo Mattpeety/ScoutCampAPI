@@ -20,11 +20,13 @@ import java.util.Objects;
 @RequestMapping(PeriodRestController.API_PERIOD)
 public class PeriodRestController {
 
-    private final CategorizationPeriodService categorizationPeriodService;
-    private final CategorizationPeriodMapper categorizationPeriodMapper;
     public static final String API_PERIOD = "/period";
     public static final String ALL_PERIODS = "/periods";
     public static final String PERIOD_BY_NAME = "/{periodName}";
+
+
+    private final CategorizationPeriodService categorizationPeriodService;
+    private final CategorizationPeriodMapper categorizationPeriodMapper;
 
     @GetMapping(value = ALL_PERIODS)
     public CategorizationPeriodsDTO findAvailablePeriods() {

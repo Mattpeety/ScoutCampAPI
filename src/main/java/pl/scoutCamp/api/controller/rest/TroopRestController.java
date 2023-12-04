@@ -20,10 +20,12 @@ import java.util.Objects;
 @RequestMapping(TroopRestController.API_TROOP)
 public class TroopRestController {
 
-    private final TroopMapper troopMapper;
-    private final TroopService troopService;
     public static final String API_TROOP = "/troop";
     public static final String TROOPS_IN_REGIMENT = "/{regimentId}/troops";
+
+    private final TroopMapper troopMapper;
+    private final TroopService troopService;
+
 
     @JsonView(JsonViews.NoRegimentView.class)
     @GetMapping(value = TROOPS_IN_REGIMENT)

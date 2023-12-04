@@ -8,7 +8,6 @@ import pl.scoutCamp.business.dao.CategoryDAO;
 import pl.scoutCamp.domain.Category;
 import pl.scoutCamp.domain.exception.NotFoundException;
 
-import java.util.Collection;
 import java.util.List;
 
 

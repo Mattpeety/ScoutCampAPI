@@ -8,4 +8,6 @@ import pl.scoutCamp.domain.Team;
 public interface TeamMapper {
 
     TeamDTO map (Team team);
+
+    Team map (final TeamDTO teamDTO);
 }
