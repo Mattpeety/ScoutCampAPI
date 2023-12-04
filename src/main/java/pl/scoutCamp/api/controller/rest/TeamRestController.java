@@ -66,7 +66,7 @@ public class TeamRestController {
     }
 
     @PostMapping(value = NEW_TEAM)
-    public ResponseEntity<TeamDTO> makeTeam(@Valid @RequestBody TeamDTO teamDTO) {
+    public ResponseEntity<TeamDTO> addTeam(@Valid @RequestBody TeamDTO teamDTO) {
         Team team = teamMapper.map(teamDTO);
         TeamEntity newTeam = teamService.createNewTeam(team);
         return ResponseEntity.created(URI.create(API_TEAM + TEAM_RESULT.formatted(newTeam.getId()))).build();

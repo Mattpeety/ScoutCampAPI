@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class TroopRepository implements TroopDAO{
+public class TroopRepository implements TroopDAO {
 
     private final TroopJpaRepository troopJpaRepository;
 
@@ -33,6 +33,13 @@ public class TroopRepository implements TroopDAO{
                 .map(troopEntityMapper::mapFromEntity)
                 .filter(troop -> troop.getRegiment().getId().equals(regimentId))
                 .toList();
+    }
+
+    @Override
+    public TroopEntity saveNewTroop(Troop troop) {
+        TroopEntity newTroop = troopEntityMapper.mapToEntity(troop);
+        troopJpaRepository.saveAndFlush(newTroop);
+        return newTroop;
     }
 
 
