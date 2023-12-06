@@ -28,3 +28,6 @@ spring:
   jackson:
     mapper:
       default-view-inclusion: true
+  security:
+    user:
+      password: Test12345_
