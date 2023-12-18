@@ -1,4 +1,4 @@
-package pl.scoutCamp.infrastructure.security;
+package pl.scoutCamp.infrastructure.database.entity;
 
 
 import jakarta.persistence.*;
@@ -15,7 +15,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "role")
 public class RoleEntity {
 
     @Id
@@ -23,8 +22,8 @@ public class RoleEntity {
     @Column(name = "role_id")
     private int id;
 
-    @Column(name = "role")
-    private String role;
+    @Column(name = "name")
+    private String name;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
     private Set<UserEntity> users;

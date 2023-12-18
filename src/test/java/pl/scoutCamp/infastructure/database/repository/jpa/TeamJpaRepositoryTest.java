@@ -11,6 +11,8 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import pl.scoutCamp.infrastructure.database.entity.RegimentEntity;
 import pl.scoutCamp.infrastructure.database.entity.TeamEntity;
+import pl.scoutCamp.infrastructure.database.entity.TroopEntity;
+import pl.scoutCamp.infrastructure.database.entity.UserEntity;
 import pl.scoutCamp.infrastructure.database.repository.jpa.RegimentJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TeamJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TroopJpaRepository;
@@ -60,8 +62,6 @@ public class TeamJpaRepositoryTest {
         assertThat(availableTeams).hasSize(3);
     }
 
-<<<<<<< Updated upstream
-=======
     @Test
     void thatTeamInRegimentCanBeSavedCorrectly() {
         // given
@@ -109,7 +109,4 @@ public class TeamJpaRepositoryTest {
         // then
         assertThat(availableTeamsOfUser).hasSize(1);
     }
-
->>>>>>> Stashed changes
-
 }

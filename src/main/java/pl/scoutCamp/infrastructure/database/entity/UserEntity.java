@@ -2,7 +2,6 @@ package pl.scoutCamp.infrastructure.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pl.scoutCamp.infrastructure.security.RoleEntity;
 
 import java.util.List;
 import java.util.Set;

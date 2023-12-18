@@ -50,10 +50,4 @@ public class SecurityConfiguration {
                 .logout(logout -> logout.logoutSuccessUrl("/login"));
         return http.build();
     }
-
-//public void configure(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests((authorize) -> authorize.requestMatchers("/login/form").permitAll()
-//                .requestMatchers("/regiment/regiments").hasAuthority("ADMIN")
-//                .anyRequest().authenticated());
-//    }
 }
