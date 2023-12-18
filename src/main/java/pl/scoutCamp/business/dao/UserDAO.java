@@ -9,6 +9,7 @@ public interface UserDAO {
 
     Optional<User> findUserByFirstName(String firstName);
     Optional<User> findUserByLastName(String lastName);
+    Optional <User> findUserByUserName(String userName);
 
     List<User> findAvailable();
 }

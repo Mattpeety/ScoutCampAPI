@@ -9,6 +9,8 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +19,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -38,19 +39,21 @@ public class SecurityConfiguration {
 
     @Bean
     @ConditionalOnProperty(value = "spring.security.enabled", havingValue = "true", matchIfMissing = true)
-    SecurityFilterChain securityEnabled(HttpSecurity http) throws Exception {
-        http
+    SecurityFilterChain web(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers
-                                (
-                                        "/team/**",
-                                        "/troop/**",
-                                        "/regiment/**",
-                                        "period/**"
-                                ).hasAnyAuthority("TEAMLEADER")
-                        .anyRequest().authenticated());
+                        .requestMatchers("/login", "/error").permitAll()
+                        .requestMatchers("/regiment/regiments").hasAuthority("ADMIN")
+                        .anyRequest().authenticated())
+                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+                .logout(logout -> logout.logoutSuccessUrl("/login"));
         return http.build();
     }
 
+//public void configure(HttpSecurity http) throws Exception {
+//        http.authorizeHttpRequests((authorize) -> authorize.requestMatchers("/login/form").permitAll()
+//                .requestMatchers("/regiment/regiments").hasAuthority("ADMIN")
+//                .anyRequest().authenticated());
+//    }
 }

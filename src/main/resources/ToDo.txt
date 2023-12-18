@@ -6,3 +6,4 @@ I see regiment under the team and also under the troop).
 5. Create Validation for adding new teams (ex. teams' names cannot duplicate).
 6. Security (signing in): new db tables for user and roles, make /login endpoint work :D
 7. Security: add sign up
+8. URGENT: solve the problem with logging: "failed to lazily initialize a collection of role"

@@ -40,10 +40,11 @@ public class AssignmentEntity {
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "assignmentsManyToMany")
-    private Set<AssignmentGroupEntity> assignmentGroups;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assignment_group_id")
     private AssignmentGroupEntity assignmentGroup;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "assignmentsManyToMany")
+    private Set<AssignmentGroupEntity> assignmentGroups;
 }
