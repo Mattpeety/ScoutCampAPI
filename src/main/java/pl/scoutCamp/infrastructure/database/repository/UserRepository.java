@@ -31,6 +31,12 @@ public class UserRepository implements UserDAO {
     }
 
     @Override
+    public Optional<User> findUserByUserName(String userName) {
+        return userJpaRepository.findUserByUserName(userName)
+                .map(userEntityMapper::mapFromEntity);
+    }
+
+    @Override
     public List<User> findAvailable() {
         return userJpaRepository.findAll().stream()
                 .map(userEntityMapper::mapFromEntity)
