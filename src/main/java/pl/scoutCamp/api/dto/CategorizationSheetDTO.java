@@ -9,12 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class CategorizationSheetDTO {
 
     Integer id;
-    String firstName;
-    String lastName;
-    String username;
-    String email;
-    String password;
+    SheetTypeDTO sheetType;
+    CategorizationPeriodDTO categorizationPeriod;
 }

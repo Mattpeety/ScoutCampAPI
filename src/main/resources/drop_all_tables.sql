@@ -13,4 +13,6 @@ DROP TABLE IF EXISTS assignment_category_minimum CASCADE;
 DROP TABLE IF EXISTS categorization_sheet_assignment CASCADE;
 DROP TABLE IF EXISTS team_categorization_sheet CASCADE;
 DROP TABLE IF EXISTS team_categorization_sheet_assignment CASCADE;
-DROP TABLE if EXISTS flyway_schema_history CASCADE;
+Drop TABLE IF EXISTS role CASCADE;
+Drop TABLE IF EXISTS user_role CASCADE;
+DROP TABLE IF EXISTS flyway_schema_history CASCADE;

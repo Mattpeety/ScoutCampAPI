@@ -29,6 +29,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
+	//security
+	implementation "io.jsonwebtoken:jjwt:${jsonwebtokenVersion}"
+	implementation "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
+
 	// db
 	implementation 'org.flywaydb:flyway-core'
 	runtimeOnly 'org.postgresql:postgresql'

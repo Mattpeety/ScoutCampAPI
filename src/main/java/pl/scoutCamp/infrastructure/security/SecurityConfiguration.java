@@ -43,10 +43,13 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/login", "/error").permitAll()
+                        .requestMatchers("/login", "login/signin", "/error").permitAll()
                         .requestMatchers("/regiment/regiments").hasAuthority("ADMIN")
                         .anyRequest().authenticated())
-                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+                .formLogin(form -> form
+                        .loginProcessingUrl("/login/signin")
+                        .failureUrl("/login")
+                        .permitAll())
                 .logout(logout -> logout.logoutSuccessUrl("/login"));
         return http.build();
     }

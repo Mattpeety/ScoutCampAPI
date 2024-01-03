@@ -51,7 +51,7 @@ public class TroopJpaRepositoryTest {
     }
 
     @Test
-    void thatTroopsOfRegimentCanBeSavedCorrectly() {
+    void thatTroopsInRegimentCanBeSavedCorrectly() {
         // given
         RegimentEntity regiment = someRegiment2();
 
