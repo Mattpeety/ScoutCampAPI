@@ -25,4 +25,17 @@ public class TeamCategorizationSheetService {
         log.info("Number of teams' scores: [{}] in period [{}]", allTeamsSheets.size(), periodName);
         return allTeamsSheets;
     }
+
+    public List<TeamCategorizationSheet> findTeamsSheetsByRegimentAndPeriod(Integer regimentId, String periodName) {
+        List<TeamCategorizationSheet> AllTeamsSheetsInRegiment =
+                teamCategorizationSheetDAO.findTeamsSheetsByPeriod(periodName)
+                        .stream()
+                        .filter(sheet -> sheet.getTeam().getRegiment().getId().equals(regimentId))
+                        .toList();
+        if (AllTeamsSheetsInRegiment.isEmpty()) {
+            throw new NotFoundException("Could not find list of teams' scores in this regiment");
+        }
+        log.info("Number of teams' scores: [{}] in regiment with Id: [{}] in period: [{}]", AllTeamsSheetsInRegiment.size(), regimentId, periodName);
+        return AllTeamsSheetsInRegiment;
+    }
 }

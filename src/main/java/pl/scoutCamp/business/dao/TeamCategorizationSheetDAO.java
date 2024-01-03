@@ -10,4 +10,5 @@ public interface TeamCategorizationSheetDAO {
     Optional<TeamCategorizationSheet> findTeamCategorizationSheetById (Integer id);
 
     List<TeamCategorizationSheet> findTeamsSheetsByPeriod(String periodName);
+
 }
