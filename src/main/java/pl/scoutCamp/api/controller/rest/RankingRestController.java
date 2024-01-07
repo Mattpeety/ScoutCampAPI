@@ -11,7 +11,6 @@ import pl.scoutCamp.api.dto.dtoList.TeamCategorizationSheetsDTO;
 import pl.scoutCamp.api.dto.mapper.TeamCategorizationSheetMapper;
 import pl.scoutCamp.business.TeamCategorizationSheetService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,7 +19,6 @@ import java.util.List;
 
 public class RankingRestController {
 
-    // Todo: unsupportedOperationException - modify lists in service and controller to make it work
     public static final String API_RANKING = "/ranking";
     public static final String ALL_TEAMS = "/allTeams/{periodName}/sort_by={sortedBy}.{order}";
     public static final String BY_REGIMENT = "/regiment={regimentId}/{periodName}/sort_by={sortedBy}.{order}";
