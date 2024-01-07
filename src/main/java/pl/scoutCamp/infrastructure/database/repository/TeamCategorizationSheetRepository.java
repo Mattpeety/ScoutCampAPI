@@ -9,7 +9,6 @@ import pl.scoutCamp.infrastructure.database.repository.mapper.TeamCategorization
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Repository
 @AllArgsConstructor
