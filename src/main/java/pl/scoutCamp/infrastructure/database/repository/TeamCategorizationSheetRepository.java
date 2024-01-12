@@ -1,9 +1,6 @@
 package pl.scoutCamp.infrastructure.database.repository;
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import pl.scoutCamp.business.dao.TeamCategorizationSheetDAO;
 import pl.scoutCamp.domain.TeamCategorizationSheet;
@@ -24,21 +21,14 @@ public class TeamCategorizationSheetRepository implements TeamCategorizationShee
 return teamCategorizationSheetJpaRepository.findTeamCategorizationSheetById(id)
         .map(teamCategorizationSheetEntityMapper::mapFromEntity);
     }
+
     @Override
-    public Page<TeamCategorizationSheet> findAllTeamSheetsByPeriod(String periodName, Integer regimentId, Pageable pageable) {
-        var ranking = teamCategorizationSheetJpaRepository.findAll(pageable)
+    public List<TeamCategorizationSheet> findCategorizationSheetsByTeam(Integer teamId, String period) {
+        return teamCategorizationSheetJpaRepository.findAll()
                 .stream()
-                .filter(sheet -> sheet.getCategorizationSheet().getCategorizationPeriod().getName().equals(periodName))
+                .filter(s -> s.getCategorizationSheet().getCategorizationPeriod().getName().equals(period))
+                .filter(sheet -> sheet.getTeam().getId().equals(teamId))
                 .map(teamCategorizationSheetEntityMapper::mapFromEntity)
                 .toList();
-        var rankingByRegiment = ranking
-                .stream()
-                .filter(sheet -> sheet.getTeam().getRegiment().getId().equals(regimentId))
-                .toList();
-        if (!(regimentId == null)) {
-            return new PageImpl<>(rankingByRegiment);
-        } else {
-            return new PageImpl<>(ranking);
-        }
     }
 }
