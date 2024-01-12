@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import pl.scoutCamp.infrastructure.database.entity.RoleEntity;
 import pl.scoutCamp.infrastructure.database.entity.UserEntity;
 import pl.scoutCamp.infrastructure.database.repository.jpa.UserJpaRepository;
 
@@ -35,7 +36,7 @@ public class AppUserDetailsService implements UserDetailsService {
 
     private List<GrantedAuthority> getUserAuthority(Set<RoleEntity> roles) {
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRole()))
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .distinct()
                 .collect(Collectors.toList());
     }

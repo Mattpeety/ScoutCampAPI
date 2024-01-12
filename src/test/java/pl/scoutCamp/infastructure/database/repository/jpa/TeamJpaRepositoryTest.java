@@ -61,7 +61,6 @@ public class TeamJpaRepositoryTest {
         // then
         assertThat(availableTeams).hasSize(3);
     }
-    
     @Test
     void thatTeamInRegimentCanBeSavedCorrectly() {
         // given
@@ -110,3 +109,4 @@ public class TeamJpaRepositoryTest {
         assertThat(availableTeamsOfUser).hasSize(1);
     }
 }
+

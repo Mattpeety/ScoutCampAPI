@@ -11,12 +11,9 @@ import pl.scoutCamp.api.controller.rest.JsonViews;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryDTO {
+public class CategorizationSheetDTO {
 
-    @JsonView(JsonViews.NoRankingView.class)
     Integer id;
-    @JsonView(JsonViews.RankingView.class)
-    String name;
-    @JsonView(JsonViews.RankingView.class)
-    String imagePath;
+    SheetTypeDTO sheetType;
+    CategorizationPeriodDTO categorizationPeriod;
 }

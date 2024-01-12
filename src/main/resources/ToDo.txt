@@ -4,6 +4,7 @@
 [DONE] 4. Find the way to not duplicate information about regiment in JSON (when using GET on team/1/teams
 I see regiment under the team and also under the troop).
 5. Create Validation for adding new teams (ex. teams' names cannot duplicate).
-6. Security (signing in): new db tables for user and roles, make /login endpoint work :D
+[DONE] 6. Security (signing in): new db tables for user and roles, make /login endpoint work :D
 7. Security: add sign up
-8. URGENT: solve the problem with logging: "failed to lazily initialize a collection of role"
+[DONE] 8. URGENT: solve the problem with logging: "failed to lazily initialize a collection of role"
+9. Create authentication with tokens. Make research, find the best way to implement it.
