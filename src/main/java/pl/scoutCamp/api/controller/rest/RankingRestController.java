@@ -12,6 +12,7 @@ import pl.scoutCamp.business.RankingService;
 @RestController
 @AllArgsConstructor
 @RequestMapping(RankingRestController.API_RANKING)
+// TODO: pagination and ranking in specific regiment
 public class RankingRestController {
 
     public static final String API_RANKING = "/ranking";

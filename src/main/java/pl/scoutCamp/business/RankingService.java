@@ -45,20 +45,30 @@ public class RankingService {
     }
 
     private List<Ranking> sortedRankingList(List<Ranking> rankingList, String sort, String order) {
+        Comparator<Ranking> comparingByPoints = Comparator.comparing(Ranking::getTotalPoints);
+        Comparator<Ranking> comparingByName = Comparator.comparing(Ranking::getTeamName);
+        Comparator<Ranking> comparingByCategory = Comparator.comparing(Ranking::getCategory);
         if (order.equals("asc")) {
             switch (sort) {
-                case POINTS -> rankingList.sort(Comparator.comparing(Ranking::getTotalPoints));
-                case NAME -> rankingList.sort(Comparator.comparing(Ranking::getTeamName));
-                case CATEGORY -> rankingList.sort(Comparator.comparing(Ranking::getCategory));
+                case POINTS -> compareAsc(rankingList, comparingByPoints);
+                case NAME -> compareAsc(rankingList, comparingByName);
+                case CATEGORY -> compareAsc(rankingList, comparingByCategory);
             }
         } else {
             switch (sort) {
-                case POINTS -> rankingList.sort(Comparator.comparing(Ranking::getTotalPoints).reversed());
-                case NAME -> rankingList.sort(Comparator.comparing(Ranking::getTeamName).reversed());
-                case CATEGORY -> rankingList.sort(Comparator.comparing(Ranking::getCategory).reversed());
+                case POINTS -> compareDesc(rankingList, comparingByPoints);
+                case NAME -> compareDesc(rankingList, comparingByName);
+                case CATEGORY -> compareDesc(rankingList, comparingByCategory);
             }
         }
         return rankingList;
+    }
+
+    private static void compareAsc(List<Ranking> rankingList, Comparator<Ranking> comparator) {
+        rankingList.sort(comparator);
+    }
+    private static void compareDesc(List<Ranking> rankingList, Comparator<Ranking> comparator) {
+        rankingList.sort(comparator.reversed());
     }
 
     private String getCategory(int points) {
