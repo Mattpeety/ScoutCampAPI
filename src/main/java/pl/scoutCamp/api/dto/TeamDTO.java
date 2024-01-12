@@ -16,7 +16,7 @@ public class TeamDTO {
 
     @JsonView(value = {JsonViews.NoTroopView.class})
     Integer id;
-    @JsonView(value = {JsonViews.NoTroopView.class})
+    @JsonView(value = {JsonViews.NoTroopView.class, JsonViews.RankingView.class})
     String name;
     @JsonView(JsonViews.FullView.class)
     RegimentDTO regiment;
