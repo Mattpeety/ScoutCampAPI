@@ -32,11 +32,12 @@ public class RankingService {
            SortType sort,
             SortOrder order) {
         List<Ranking> rankingList = new ArrayList<>();
-        for (Team team : FindAllTeams()) {
+        for (Team team : findAllTeams()) {
+            Integer totalPoints = getTotalPoints(getTeamSheets(team, period));
             Ranking teamSummary = Ranking.builder()
                     .teamName(team.getName())
-                    .totalPoints(getTotalPoints(getTeamSheets(team, period)))
-                    .category(getCategory(getTotalPoints(getTeamSheets(team, period))))
+                    .totalPoints(totalPoints)
+                    .category(getCategory(totalPoints))
                     .sheets(getTeamSheets(team, period))
                     .build();
             rankingList.add(teamSummary);
@@ -92,7 +93,7 @@ public class RankingService {
         return totalPoints;
     }
 
-    private List<Team> FindAllTeams() {
+    private List<Team> findAllTeams() {
         return teamDAO.findTeams();
     }
 
