@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import pl.scoutCamp.api.controller.enums.SortOrder;
+import pl.scoutCamp.api.controller.enums.SortType;
 import pl.scoutCamp.api.dto.RankingDTO;
 import pl.scoutCamp.api.dto.dtoList.RankingsDTO;
 import pl.scoutCamp.api.dto.mapper.RankingMapper;
@@ -25,20 +27,22 @@ public class RankingRestController {
     @JsonView(JsonViews.RankingView.class)
     public RankingsDTO findAllRankings (
             @PathVariable String period,
-            @RequestParam(defaultValue = "points") String sort,
-            @RequestParam(defaultValue = "desc") String order
+            @RequestParam(defaultValue = "points") SortType sort,
+            @RequestParam(defaultValue = "desc") SortOrder order
     ) {
         return getRankingsDTO(period, sort, order);
     }
 
-    private RankingsDTO getRankingsDTO(String period, String sort, String order) {
+    private RankingsDTO getRankingsDTO(String period, SortType sort, SortOrder order) {
         return RankingsDTO.builder()
                 .fullRanking(getAllRankingsDTO(period, sort, order))
                 .build();
     }
 
-    private Page<RankingDTO> getAllRankingsDTO(String period, String sort, String order) {
+    private Page<RankingDTO> getAllRankingsDTO(String period, SortType sort, SortOrder order) {
         return rankingService.createRankingList(period, sort, order)
                 .map(rankingMapper::map);
     }
+
+
 }

@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
+import pl.scoutCamp.api.controller.enums.SortOrder;
+import pl.scoutCamp.api.controller.enums.SortType;
 import pl.scoutCamp.business.dao.TeamCategorizationSheetDAO;
 import pl.scoutCamp.business.dao.TeamDAO;
 import pl.scoutCamp.domain.Ranking;
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static pl.scoutCamp.api.controller.enums.GivenCategory.*;
+
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -22,14 +26,11 @@ public class RankingService {
 
     private final TeamDAO teamDAO;
     private final TeamCategorizationSheetDAO teamCategorizationSheetDAO;
-    public static final String POINTS = "points";
-    public static final String NAME = "name";
-    public static final String CATEGORY = "category";
 
     public Page<Ranking> createRankingList(
             String period,
-            String sort,
-            String order) {
+           SortType sort,
+            SortOrder order) {
         List<Ranking> rankingList = new ArrayList<>();
         for (Team team : FindAllTeams()) {
             Ranking teamSummary = Ranking.builder()
@@ -44,11 +45,11 @@ public class RankingService {
         return new PageImpl<>(sortedRankingList(rankingList, sort, order));
     }
 
-    private List<Ranking> sortedRankingList(List<Ranking> rankingList, String sort, String order) {
+    private List<Ranking> sortedRankingList(List<Ranking> rankingList, SortType sort, SortOrder order) {
         Comparator<Ranking> comparingByPoints = Comparator.comparing(Ranking::getTotalPoints);
         Comparator<Ranking> comparingByName = Comparator.comparing(Ranking::getTeamName);
         Comparator<Ranking> comparingByCategory = Comparator.comparing(Ranking::getCategory);
-        if (order.equals("asc")) {
+        if (order.equals(SortOrder.ASC)) {
             switch (sort) {
                 case POINTS -> compareAsc(rankingList, comparingByPoints);
                 case NAME -> compareAsc(rankingList, comparingByName);
@@ -74,11 +75,11 @@ public class RankingService {
     private String getCategory(int points) {
         String category = "";
         if (points >= 0 && points < 20) {
-            category = "Polowa";
+            category = POLOWA.getName();
         } else if (points >= 20 && points < 50) {
-            category = "Leśna";
+            category = LESNA.getName();
         } else if (points >= 50) {
-            category = "Puszczańska";
+            category = PUSZCZANSKA.getName();
         }
         return category;
     }
