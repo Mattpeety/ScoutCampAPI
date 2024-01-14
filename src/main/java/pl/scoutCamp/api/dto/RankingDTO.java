@@ -5,13 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategorizationSheetDTO {
+public class RankingDTO {
 
-    Integer id;
-    SheetTypeDTO sheetType;
-    CategorizationPeriodDTO categorizationPeriod;
+    String teamName;
+    Integer totalPoints;
+    String category;
+    List<TeamCategorizationSheetDTO> sheets;
 }

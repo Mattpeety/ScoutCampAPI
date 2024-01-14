@@ -9,7 +9,6 @@ import pl.scoutCamp.infrastructure.database.repository.mapper.TeamCategorization
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Repository
 @AllArgsConstructor
@@ -24,10 +23,11 @@ return teamCategorizationSheetJpaRepository.findTeamCategorizationSheetById(id)
     }
 
     @Override
-    public List<TeamCategorizationSheet> findTeamsSheetsByPeriod(String periodName) {
+    public List<TeamCategorizationSheet> findCategorizationSheetsByTeam(Integer teamId, String period) {
         return teamCategorizationSheetJpaRepository.findAll()
                 .stream()
-                .filter(sheet -> sheet.getCategorizationSheet().getCategorizationPeriod().getName().equals(periodName))
+                .filter(s -> s.getCategorizationSheet().getCategorizationPeriod().getName().equals(period))
+                .filter(sheet -> sheet.getTeam().getId().equals(teamId))
                 .map(teamCategorizationSheetEntityMapper::mapFromEntity)
                 .toList();
     }
