@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.scoutCamp.api.controller.enums.SortOrder;
 import pl.scoutCamp.api.controller.enums.SortType;
@@ -35,22 +37,26 @@ public class RankingService {
     public Page<Ranking> createRankingList(
             String period,
             Integer regiment,
+            Integer page,
+            Integer size,
             SortType sort,
             SortOrder order) {
+        Pageable pageable = PageRequest.of(page, size);
         List<Ranking> rankingList = new ArrayList<>();
-        for (Team team : getTeams(regiment)) {
-            var foundTeamSheets = getTeamSheets(team, period);
-            Integer totalPoints = getTotalPoints(foundTeamSheets);
+        List<Team> listedTeams = getTeams(regiment);
+        for (Team team : listedTeams) {
+            var teamSheets = getTeamSheets(team, period);
+            Integer totalPoints = getTotalPoints(teamSheets);
             Ranking teamSummary = Ranking.builder()
                     .teamName(team.getName())
                     .totalPoints(totalPoints)
                     .category(getCategory(totalPoints))
-                    .sheets(foundTeamSheets)
+                    .sheets(teamSheets)
                     .build();
             rankingList.add(teamSummary);
         }
 //
-        return new PageImpl<>(sortedRankingList(rankingList, sort, order));
+        return new PageImpl<>(sortedRankingList(rankingList, sort, order), pageable, listedTeams.size());
     }
 
     private List<Ranking> sortedRankingList(List<Ranking> rankingList, SortType sort, SortOrder order) {

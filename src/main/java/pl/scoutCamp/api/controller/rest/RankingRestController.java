@@ -19,6 +19,8 @@ public class RankingRestController {
 
     public static final String API_RANKING = "/ranking";
     public static final String RANKING = "/{period}";
+    public static final String DEFAULT_PAGE = "0";
+    public static final String DEFAULT_PAGE_SIZE = "50";
 
     private final RankingService rankingService;
     private final RankingMapper rankingMapper;
@@ -28,20 +30,22 @@ public class RankingRestController {
     public RankingsDTO findAllRankings (
             @PathVariable String period,
             @RequestParam(required = false) Integer regiment,
+            @RequestParam(defaultValue = DEFAULT_PAGE) Integer page,
+            @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer size,
             @RequestParam(defaultValue = "points") SortType sort,
             @RequestParam(defaultValue = "desc") SortOrder order
     ) {
-        return getRankingsDTO(period, regiment, sort, order);
+        return getRankingsDTO(period, regiment, page, size, sort, order);
     }
 
-    private RankingsDTO getRankingsDTO(String period, Integer regiment, SortType sort, SortOrder order) {
+    private RankingsDTO getRankingsDTO(String period, Integer regiment, Integer page, Integer size, SortType sort, SortOrder order) {
         return RankingsDTO.builder()
-                .fullRanking(getAllRankingsDTO(period, regiment, sort, order))
+                .fullRanking(getAllRankingsDTO(period, regiment, page, size, sort, order))
                 .build();
     }
 
-    private Page<RankingDTO> getAllRankingsDTO(String period, Integer regiment, SortType sort, SortOrder order) {
-        return rankingService.createRankingList(period, regiment, sort, order)
+    private Page<RankingDTO> getAllRankingsDTO(String period, Integer regiment, Integer page, Integer size, SortType sort, SortOrder order) {
+        return rankingService.createRankingList(period, regiment, page, size, sort, order)
                 .map(rankingMapper::map);
     }
 
