@@ -34,16 +34,18 @@ public class RankingService {
 
     public Page<Ranking> createRankingList(
             String period,
+            Integer regiment,
             SortType sort,
             SortOrder order) {
         List<Ranking> rankingList = new ArrayList<>();
-        for (Team team : findAllTeams()) {
-            Integer totalPoints = getTotalPoints(getTeamSheets(team, period));
+        for (Team team : getTeams(regiment)) {
+            var foundTeamSheets = getTeamSheets(team, period);
+            Integer totalPoints = getTotalPoints(foundTeamSheets);
             Ranking teamSummary = Ranking.builder()
                     .teamName(team.getName())
                     .totalPoints(totalPoints)
                     .category(getCategory(totalPoints))
-                    .sheets(getTeamSheets(team, period))
+                    .sheets(foundTeamSheets)
                     .build();
             rankingList.add(teamSummary);
         }
@@ -63,7 +65,7 @@ public class RankingService {
         return rankingList;
 
     }
-    
+
     private void compare(List<Ranking> rankingList, Comparator<Ranking> comparator, SortOrder order) {
         if (order.equals(ASC)) {
             rankingList.sort(comparator);
@@ -92,8 +94,12 @@ public class RankingService {
         return totalPoints;
     }
 
-    private List<Team> findAllTeams() {
-        return teamDAO.findTeams();
+    private List<Team> getTeams(Integer regiment) {
+        if (regiment != null) {
+            return teamDAO.findTeamsByRegimentId(regiment);
+        } else {
+            return teamDAO.findTeams();
+        }
     }
 
     private List<TeamCategorizationSheet> getTeamSheets(Team team, String period) {

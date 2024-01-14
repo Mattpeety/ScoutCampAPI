@@ -18,29 +18,30 @@ import pl.scoutCamp.business.RankingService;
 public class RankingRestController {
 
     public static final String API_RANKING = "/ranking";
-    public static final String ALL_TEAMS = "/allTeams/{period}";
+    public static final String RANKING = "/{period}";
 
     private final RankingService rankingService;
     private final RankingMapper rankingMapper;
 
-    @GetMapping(value = ALL_TEAMS)
+    @GetMapping(value = RANKING)
     @JsonView(JsonViews.RankingView.class)
     public RankingsDTO findAllRankings (
             @PathVariable String period,
+            @RequestParam(required = false) Integer regiment,
             @RequestParam(defaultValue = "points") SortType sort,
             @RequestParam(defaultValue = "desc") SortOrder order
     ) {
-        return getRankingsDTO(period, sort, order);
+        return getRankingsDTO(period, regiment, sort, order);
     }
 
-    private RankingsDTO getRankingsDTO(String period, SortType sort, SortOrder order) {
+    private RankingsDTO getRankingsDTO(String period, Integer regiment, SortType sort, SortOrder order) {
         return RankingsDTO.builder()
-                .fullRanking(getAllRankingsDTO(period, sort, order))
+                .fullRanking(getAllRankingsDTO(period, regiment, sort, order))
                 .build();
     }
 
-    private Page<RankingDTO> getAllRankingsDTO(String period, SortType sort, SortOrder order) {
-        return rankingService.createRankingList(period, sort, order)
+    private Page<RankingDTO> getAllRankingsDTO(String period, Integer regiment, SortType sort, SortOrder order) {
+        return rankingService.createRankingList(period, regiment, sort, order)
                 .map(rankingMapper::map);
     }
 
