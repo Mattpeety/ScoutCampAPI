@@ -18,6 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static pl.scoutCamp.api.controller.enums.GivenCategory.*;
+import static pl.scoutCamp.api.controller.enums.SortOrder.*;
 
 @Slf4j
 @Service
@@ -27,9 +28,13 @@ public class RankingService {
     private final TeamDAO teamDAO;
     private final TeamCategorizationSheetDAO teamCategorizationSheetDAO;
 
+    private static final Integer MIN_POINTS_FOR_POLOWA = 20;
+    private static final Integer MIN_POINTS_FOR_LESNA = 35;
+    private static final Integer MIN_POINTS_FOR_PUSZCZANSKA = 50;
+
     public Page<Ranking> createRankingList(
             String period,
-           SortType sort,
+            SortType sort,
             SortOrder order) {
         List<Ranking> rankingList = new ArrayList<>();
         for (Team team : findAllTeams()) {
@@ -50,36 +55,30 @@ public class RankingService {
         Comparator<Ranking> comparingByPoints = Comparator.comparing(Ranking::getTotalPoints);
         Comparator<Ranking> comparingByName = Comparator.comparing(Ranking::getTeamName);
         Comparator<Ranking> comparingByCategory = Comparator.comparing(Ranking::getCategory);
-        if (order.equals(SortOrder.ASC)) {
-            switch (sort) {
-                case POINTS -> compareAsc(rankingList, comparingByPoints);
-                case NAME -> compareAsc(rankingList, comparingByName);
-                case CATEGORY -> compareAsc(rankingList, comparingByCategory);
-            }
-        } else {
-            switch (sort) {
-                case POINTS -> compareDesc(rankingList, comparingByPoints);
-                case NAME -> compareDesc(rankingList, comparingByName);
-                case CATEGORY -> compareDesc(rankingList, comparingByCategory);
-            }
+        switch (sort) {
+            case POINTS -> compare(rankingList, comparingByPoints, order);
+            case NAME -> compare(rankingList, comparingByName, order);
+            case CATEGORY -> compare(rankingList, comparingByCategory, order);
         }
         return rankingList;
-    }
 
-    private static void compareAsc(List<Ranking> rankingList, Comparator<Ranking> comparator) {
-        rankingList.sort(comparator);
     }
-    private static void compareDesc(List<Ranking> rankingList, Comparator<Ranking> comparator) {
-        rankingList.sort(comparator.reversed());
+    
+    private void compare(List<Ranking> rankingList, Comparator<Ranking> comparator, SortOrder order) {
+        if (order.equals(ASC)) {
+            rankingList.sort(comparator);
+        } else {
+            rankingList.sort(comparator.reversed());
+        }
     }
 
     private String getCategory(int points) {
         String category = "";
-        if (points >= 0 && points < 20) {
+        if (points >= MIN_POINTS_FOR_POLOWA && points < MIN_POINTS_FOR_LESNA) {
             category = POLOWA.getName();
-        } else if (points >= 20 && points < 50) {
+        } else if (points >= MIN_POINTS_FOR_LESNA && points < MIN_POINTS_FOR_PUSZCZANSKA) {
             category = LESNA.getName();
-        } else if (points >= 50) {
+        } else if (points >= MIN_POINTS_FOR_PUSZCZANSKA) {
             category = PUSZCZANSKA.getName();
         }
         return category;

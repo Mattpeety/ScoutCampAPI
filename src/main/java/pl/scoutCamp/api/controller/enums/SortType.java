@@ -10,8 +10,6 @@ public enum SortType {
     NAME("name"),
     CATEGORY("category");
 
-
-
     private final String name;
 
 
