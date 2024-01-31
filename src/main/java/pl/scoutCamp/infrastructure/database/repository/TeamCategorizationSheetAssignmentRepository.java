@@ -1,13 +1,13 @@
 package pl.scoutCamp.infrastructure.database.repository;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.scoutCamp.business.dao.TeamCategorizationSheetAssignmentDAO;
 import pl.scoutCamp.domain.TeamCategorizationSheetAssignment;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TeamCategorizationSheetAssignmentJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.mapper.TeamCategorizationSheetAssignmentEntityMapper;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,5 +21,14 @@ public class TeamCategorizationSheetAssignmentRepository implements TeamCategori
     public Optional<TeamCategorizationSheetAssignment> findTeamCategorizationSheetAssignmentById(Integer id) {
         return teamCategorizationSheetAssignmentJpaRepository.findTeamCategorizationSheetAssignmentById(id)
                 .map(teamCategorizationSheetAssignmentEntityMapper::mapFromEntity);
+    }
+
+    @Override
+    public List<TeamCategorizationSheetAssignment> saveNewSheetAssignments(List<TeamCategorizationSheetAssignment> teamCategorizationSheetAssignments) {
+        var newSheetAssignmentsEntities = teamCategorizationSheetAssignments.stream()
+                .map(teamCategorizationSheetAssignmentEntityMapper::mapToEntity)
+                .toList();
+        teamCategorizationSheetAssignmentJpaRepository.saveAllAndFlush(newSheetAssignmentsEntities);
+        return teamCategorizationSheetAssignments;
     }
 }

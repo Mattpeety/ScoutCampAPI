@@ -11,4 +11,6 @@ public interface TeamCategorizationSheetAssignmentEntityMapper {
     TeamCategorizationSheetAssignment mapFromEntity(
             TeamCategorizationSheetAssignmentEntity teamCategorizationSheetAssignment
     );
+
+    TeamCategorizationSheetAssignmentEntity mapToEntity(TeamCategorizationSheetAssignment teamSheet);
 }
