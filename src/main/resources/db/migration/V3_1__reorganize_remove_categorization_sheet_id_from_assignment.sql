@@ -1,0 +1,2 @@
+ALTER TABLE assignment
+DROP COLUMN categorization_sheet_id
