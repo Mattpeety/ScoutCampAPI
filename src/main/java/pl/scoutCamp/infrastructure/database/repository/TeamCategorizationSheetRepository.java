@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.scoutCamp.business.dao.TeamCategorizationSheetDAO;
 import pl.scoutCamp.domain.TeamCategorizationSheet;
+import pl.scoutCamp.infrastructure.database.entity.TeamCategorizationSheetEntity;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TeamCategorizationSheetJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.mapper.TeamCategorizationSheetEntityMapper;
 
@@ -30,5 +31,12 @@ return teamCategorizationSheetJpaRepository.findTeamCategorizationSheetById(id)
                 .filter(sheet -> sheet.getTeam().getId().equals(teamId))
                 .map(teamCategorizationSheetEntityMapper::mapFromEntity)
                 .toList();
+    }
+
+    @Override
+    public TeamCategorizationSheet saveNewTeamCategorizationSheet(TeamCategorizationSheet teamCategorizationSheet) {
+        TeamCategorizationSheetEntity newTeamCategorizationSheet = teamCategorizationSheetEntityMapper.mapToEntity(teamCategorizationSheet);
+        teamCategorizationSheetJpaRepository.saveAndFlush(newTeamCategorizationSheet);
+        return teamCategorizationSheetEntityMapper.mapFromEntity(newTeamCategorizationSheet);
     }
 }

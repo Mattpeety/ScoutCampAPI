@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TeamDAO {
 
-    Optional<Team> findTeamByName(String name);
+    Optional<Team> findTeamById(int id);
     List<Team> findTeams();
 
     List<Team> findTeamsByRegimentId (Integer regimentId);

@@ -20,8 +20,8 @@ public class TeamRepository implements TeamDAO {
     private final TeamEntityMapper teamEntityMapper;
 
     @Override
-    public Optional<Team> findTeamByName(String name) {
-        return teamJpaRepository.findTeamByName(name)
+    public Optional<Team> findTeamById(int id) {
+        return teamJpaRepository.findTeamById(id)
                 .map(teamEntityMapper::mapFromEntity);
     }
 

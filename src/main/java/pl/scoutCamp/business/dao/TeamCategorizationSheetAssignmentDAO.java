@@ -10,5 +10,5 @@ public interface TeamCategorizationSheetAssignmentDAO {
 
     Optional<TeamCategorizationSheetAssignment> findTeamCategorizationSheetAssignmentById(Integer id);
 
-    List<TeamCategorizationSheetAssignment> saveNewSheetAssignments(List<TeamCategorizationSheetAssignment> teamSheetAssignments);
+    void createNewFilledAssignmentsList(List<TeamCategorizationSheetAssignment> teamCategorizationSheetAssignments);
 }

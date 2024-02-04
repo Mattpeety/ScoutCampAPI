@@ -9,4 +9,6 @@ import pl.scoutCamp.infrastructure.database.entity.TeamCategorizationSheetEntity
 public interface TeamCategorizationSheetEntityMapper {
 
     TeamCategorizationSheet mapFromEntity (TeamCategorizationSheetEntity teamCategorizationSheet);
+
+    TeamCategorizationSheetEntity mapToEntity (TeamCategorizationSheet teamCategorizationSheet);
 }
