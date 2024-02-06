@@ -24,10 +24,11 @@ public class TeamCategorizationSheetAssignmentRepository implements TeamCategori
     }
 
     @Override
-    public void createNewFilledAssignmentsList(List<TeamCategorizationSheetAssignment> teamCategorizationSheetAssignments) {
+    public List<TeamCategorizationSheetAssignment> createNewFilledAssignmentsList(List<TeamCategorizationSheetAssignment> teamCategorizationSheetAssignments) {
        var newFilledAssignmentsList = teamCategorizationSheetAssignments.stream()
                 .map(teamCategorizationSheetAssignmentEntityMapper::mapToEntity)
                 .toList();
        teamCategorizationSheetAssignmentJpaRepository.saveAllAndFlush(newFilledAssignmentsList);
+       return newFilledAssignmentsList.stream().map(teamCategorizationSheetAssignmentEntityMapper::mapFromEntity).toList();
     }
 }

@@ -6,6 +6,5 @@ import pl.scoutCamp.domain.Assignment;
 
 @Mapper(componentModel = "spring")
 public interface AssignmentMapper {
-
     Assignment map (AssignmentDTO assignmentDTO);
 }

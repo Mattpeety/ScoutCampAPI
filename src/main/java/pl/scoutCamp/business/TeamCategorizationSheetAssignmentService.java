@@ -14,7 +14,7 @@ import java.util.List;
 public class TeamCategorizationSheetAssignmentService {
 
     TeamCategorizationSheetAssignmentDAO teamCategorizationSheetAssignmentDAO;
-    public void createFilledAssignmentsList(List<TeamCategorizationSheetAssignment> teamCategorizationSheetAssignments) {
-        teamCategorizationSheetAssignmentDAO.createNewFilledAssignmentsList(teamCategorizationSheetAssignments);
+    public List<TeamCategorizationSheetAssignment> createFilledAssignmentsList(List<TeamCategorizationSheetAssignment> teamCategorizationSheetAssignments) {
+        return teamCategorizationSheetAssignmentDAO.createNewFilledAssignmentsList(teamCategorizationSheetAssignments);
     }
 }

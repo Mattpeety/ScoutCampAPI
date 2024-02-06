@@ -8,8 +8,6 @@ import java.util.Optional;
 
 public interface TeamCategorizationSheetDAO {
 
-    Optional<TeamCategorizationSheet> findTeamCategorizationSheetById (Integer id);
-
     List<TeamCategorizationSheet> findCategorizationSheetsByTeam(Integer teamId, String period);
 
     TeamCategorizationSheet saveNewTeamCategorizationSheet(TeamCategorizationSheet teamCategorizationSheet);

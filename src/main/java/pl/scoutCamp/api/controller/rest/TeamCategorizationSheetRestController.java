@@ -1,10 +1,12 @@
 package pl.scoutCamp.api.controller.rest;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.scoutCamp.api.dto.*;
+import pl.scoutCamp.api.dto.dtoList.TeamCategorizationSheetsDTO;
 import pl.scoutCamp.api.dto.mapper.*;
 import pl.scoutCamp.business.*;
 import pl.scoutCamp.domain.TeamCategorizationSheet;
@@ -19,8 +21,10 @@ import java.util.List;
 @RequestMapping(TeamCategorizationSheetRestController.API_TEAM_SHEETS)
 public class TeamCategorizationSheetRestController {
 
-    public static final String API_TEAM_SHEETS = "/categorization_team_sheet";
+    public static final String API_TEAM_SHEETS = "/team_categorization_sheet";
+    public static final String TEAM_CATEGORIZATION_SHEETS_IN_PERIOD = "all_sheets_in_period/{period}";
     public static final String NEW_TEAM_SHEET = "/new";
+    public static final String FILLED_ASSIGNMENTS = "/filled_assignments";
     public static final String TEAM_SHEET_RESULT = "/%s";
 
     private TeamService teamService;
@@ -34,23 +38,52 @@ public class TeamCategorizationSheetRestController {
     private CategoryMapper categoryMapper;
     private TeamMapper teamMapper;
 
+    @GetMapping(value = TEAM_CATEGORIZATION_SHEETS_IN_PERIOD)
+    @JsonView(JsonViews.RankingView.class)
+    public TeamCategorizationSheetsDTO getTeamCategorizationSheetsByPeriod(
+            @PathVariable String period,
+            @RequestParam int teamId
+    ) {
+        return getTeamCategorizationSheetsDTO(period, teamId);
+    }
+
+    private TeamCategorizationSheetsDTO getTeamCategorizationSheetsDTO(String period, int teamId) {
+        return TeamCategorizationSheetsDTO.builder()
+                .teamCategorizationSheets(getAllTeamCategorizationSheetsDTO(period, teamId))
+                .build();
+    }
+
+    private List<TeamCategorizationSheetDTO> getAllTeamCategorizationSheetsDTO(String period, int teamId) {
+        return teamCategorizationSheetService.getTeamSheets(teamId, period).stream()
+                .map(teamCategorizationSheetMapper::map)
+                .toList();
+    }
+
     @PostMapping(value = NEW_TEAM_SHEET)
-    public ResponseEntity<TeamCategorizationSheetDTO> addTeamSheetAssignments(
+    public ResponseEntity<TeamCategorizationSheetDTO> addTeamCategorizationSheet(
             @RequestParam int teamId,
             @RequestParam int points,
             @RequestParam int categoryId,
             @RequestParam int categorizationSheetId,
-            @RequestParam(defaultValue = "true") boolean isDraft,
-            @RequestBody List<TeamCategorizationSheetAssignmentDTO> teamCategorizationSheetAssignmentsDTO
+            @RequestParam(defaultValue = "true") boolean isDraft
     ) {
 
-        TeamCategorizationSheet newTeamCategorizationSheet
-                = teamCategorizationSheetService.createNewTeamCategorizationSheet(mappedTeamCategorizationSheet(teamId, points, categoryId, categorizationSheetId, isDraft));
-        teamCategorizationSheetAssignmentService.createFilledAssignmentsList(mappedFilledAssignmentsList(teamCategorizationSheetAssignmentsDTO));
+        TeamCategorizationSheet mappedTeamCategorizationSheet = mappedTeamCategorizationSheet(teamId, points, categoryId, categorizationSheetId, isDraft);
+        TeamCategorizationSheet newTeamCategorizationSheet = teamCategorizationSheetService.createNewTeamCategorizationSheet(mappedTeamCategorizationSheet);
         return ResponseEntity.created(URI.create(API_TEAM_SHEETS + TEAM_SHEET_RESULT.formatted(newTeamCategorizationSheet.getId()))).build();
     }
 
-    private List<TeamCategorizationSheetAssignment> mappedFilledAssignmentsList (List<TeamCategorizationSheetAssignmentDTO> teamCategorizationSheetAssignmentsDTO) {
+    @PostMapping(value = FILLED_ASSIGNMENTS)
+    public ResponseEntity<List<TeamCategorizationSheetAssignmentDTO>> addFilledTeamCategorizationSheetAssignments(
+            @RequestBody List<TeamCategorizationSheetAssignmentDTO> teamCategorizationSheetAssignmentsDTO
+    ) {
+        List<TeamCategorizationSheetAssignment> filledAssignmentsList =
+                teamCategorizationSheetAssignmentService.createFilledAssignmentsList(mappedFilledAssignmentsList(teamCategorizationSheetAssignmentsDTO));
+        return ResponseEntity.created(URI.create(API_TEAM_SHEETS + TEAM_SHEET_RESULT
+                .formatted(filledAssignmentsList.get(0).getTeamCategorizationSheet().getId()))).build();
+    }
+
+    private List<TeamCategorizationSheetAssignment> mappedFilledAssignmentsList(List<TeamCategorizationSheetAssignmentDTO> teamCategorizationSheetAssignmentsDTO) {
         return teamCategorizationSheetAssignmentsDTO.stream().map(teamCategorizationSheetAssignmentMapper::map).toList();
     }
 

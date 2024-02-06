@@ -1,5 +1,6 @@
 package pl.scoutCamp.business;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -28,12 +29,13 @@ import static pl.scoutCamp.api.controller.enums.SortOrder.*;
 public class RankingService {
 
     private final TeamDAO teamDAO;
-    private final TeamCategorizationSheetDAO teamCategorizationSheetDAO;
+    private final TeamCategorizationSheetService teamCategorizationSheetService;
 
     private static final Integer MIN_POINTS_FOR_POLOWA = 20;
     private static final Integer MIN_POINTS_FOR_LESNA = 35;
     private static final Integer MIN_POINTS_FOR_PUSZCZANSKA = 50;
 
+    @Transactional
     public Page<Ranking> createRankingList(
             String period,
             Integer regiment,
@@ -45,7 +47,7 @@ public class RankingService {
         List<Ranking> rankingList = new ArrayList<>();
         List<Team> listedTeams = getTeams(regiment);
         for (Team team : listedTeams) {
-            var teamSheets = getTeamSheets(team, period);
+            var teamSheets = getTeamSheets(period, team);
             Integer totalPoints = getTotalPoints(teamSheets);
             Ranking teamSummary = Ranking.builder()
                     .teamName(team.getName())
@@ -57,6 +59,10 @@ public class RankingService {
         }
 //
         return new PageImpl<>(sortedRankingList(rankingList, sort, order), pageable, listedTeams.size());
+    }
+
+    private List<TeamCategorizationSheet> getTeamSheets(String period, Team team) {
+        return teamCategorizationSheetService.getTeamSheets(team.getId(), period);
     }
 
     private List<Ranking> sortedRankingList(List<Ranking> rankingList, SortType sort, SortOrder order) {
@@ -108,7 +114,5 @@ public class RankingService {
         }
     }
 
-    private List<TeamCategorizationSheet> getTeamSheets(Team team, String period) {
-        return teamCategorizationSheetDAO.findCategorizationSheetsByTeam(team.getId(), period);
-    }
+
 }

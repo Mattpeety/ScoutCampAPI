@@ -17,11 +17,6 @@ public class TeamCategorizationSheetRepository implements TeamCategorizationShee
 
     TeamCategorizationSheetJpaRepository teamCategorizationSheetJpaRepository;
     TeamCategorizationSheetEntityMapper teamCategorizationSheetEntityMapper;
-    @Override
-    public Optional<TeamCategorizationSheet> findTeamCategorizationSheetById(Integer id) {
-return teamCategorizationSheetJpaRepository.findTeamCategorizationSheetById(id)
-        .map(teamCategorizationSheetEntityMapper::mapFromEntity);
-    }
 
     @Override
     public List<TeamCategorizationSheet> findCategorizationSheetsByTeam(Integer teamId, String period) {
