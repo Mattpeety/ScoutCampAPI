@@ -32,9 +32,8 @@ public class AssignmentEntity {
     @Column(name = "max_scoring_value")
     private Integer maxScoringValue;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categorization_sheet_id")
-    private CategorizationSheetEntity categorizationSheet;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<CategorizationSheetEntity> categorizationSheets;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.scoutCamp.business.dao.TeamCategorizationSheetDAO;
 import pl.scoutCamp.domain.TeamCategorizationSheet;
+import pl.scoutCamp.infrastructure.database.entity.TeamCategorizationSheetEntity;
 import pl.scoutCamp.infrastructure.database.repository.jpa.TeamCategorizationSheetJpaRepository;
 import pl.scoutCamp.infrastructure.database.repository.mapper.TeamCategorizationSheetEntityMapper;
 
@@ -16,11 +17,6 @@ public class TeamCategorizationSheetRepository implements TeamCategorizationShee
 
     TeamCategorizationSheetJpaRepository teamCategorizationSheetJpaRepository;
     TeamCategorizationSheetEntityMapper teamCategorizationSheetEntityMapper;
-    @Override
-    public Optional<TeamCategorizationSheet> findTeamCategorizationSheetById(Integer id) {
-return teamCategorizationSheetJpaRepository.findTeamCategorizationSheetById(id)
-        .map(teamCategorizationSheetEntityMapper::mapFromEntity);
-    }
 
     @Override
     public List<TeamCategorizationSheet> findCategorizationSheetsByTeam(Integer teamId, String period) {
@@ -30,5 +26,12 @@ return teamCategorizationSheetJpaRepository.findTeamCategorizationSheetById(id)
                 .filter(sheet -> sheet.getTeam().getId().equals(teamId))
                 .map(teamCategorizationSheetEntityMapper::mapFromEntity)
                 .toList();
+    }
+
+    @Override
+    public TeamCategorizationSheet saveNewTeamCategorizationSheet(TeamCategorizationSheet teamCategorizationSheet) {
+        TeamCategorizationSheetEntity newTeamCategorizationSheet = teamCategorizationSheetEntityMapper.mapToEntity(teamCategorizationSheet);
+        teamCategorizationSheetJpaRepository.saveAndFlush(newTeamCategorizationSheet);
+        return teamCategorizationSheetEntityMapper.mapFromEntity(newTeamCategorizationSheet);
     }
 }

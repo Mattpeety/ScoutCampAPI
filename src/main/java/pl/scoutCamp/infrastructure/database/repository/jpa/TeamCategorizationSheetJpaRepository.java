@@ -9,5 +9,4 @@ import java.util.Optional;
 @Repository
 public interface TeamCategorizationSheetJpaRepository extends JpaRepository<TeamCategorizationSheetEntity, Integer> {
 
-    Optional<TeamCategorizationSheetEntity> findTeamCategorizationSheetById(Integer id);
 }

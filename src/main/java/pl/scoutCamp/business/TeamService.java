@@ -10,6 +10,7 @@ import pl.scoutCamp.domain.exception.NotFoundException;
 import pl.scoutCamp.infrastructure.database.entity.TeamEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -56,6 +57,15 @@ public class TeamService {
         }
         log.info("Teams: [{}] of User with id [{}]", teamsOfUser, userId);
         return teamsOfUser;
+    }
+
+    @Transactional
+    public Team findTeamById(int id) {
+        Optional<Team> team = teamDAO.findTeamById(id);
+        if (team.isEmpty()) {
+            throw new NotFoundException("Could not find team with id: [%s]".formatted(id));
+        }
+        return team.get();
     }
 
 

@@ -30,8 +30,13 @@ public class CategorizationSheetEntity {
     private CategorizationPeriodEntity categorizationPeriod;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "categorizationSheet")
-    private Set<AssignmentEntity> assignments;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categorizationSheet")
     private Set<TeamCategorizationSheetEntity> teamCategorizationSheets;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "categorization_sheet_assignment",
+            joinColumns = {@JoinColumn(name = "assignment_id")},
+            inverseJoinColumns = {@JoinColumn(name = "categorization_sheet_id")}
+    )
+    private Set<AssignmentEntity> assignments;
 }

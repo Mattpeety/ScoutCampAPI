@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface CategoryDAO {
 
     List<Category> findCategories();
+
+    Optional<Category> findCategoryById(int id);
 }

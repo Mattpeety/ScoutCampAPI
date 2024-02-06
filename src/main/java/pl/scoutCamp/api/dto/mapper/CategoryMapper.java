@@ -8,4 +8,6 @@ import pl.scoutCamp.domain.Category;
 public interface CategoryMapper {
 
     CategoryDTO map(Category category);
+
+    Category map (CategoryDTO categoryDTO);
 }

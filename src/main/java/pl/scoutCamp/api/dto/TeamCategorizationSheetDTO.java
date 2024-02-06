@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.scoutCamp.api.controller.rest.JsonViews;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -22,9 +22,9 @@ public class TeamCategorizationSheetDTO {
     @JsonView(JsonViews.RankingView.class)
     Integer points;
     @JsonView(JsonViews.RankingView.class)
-    Timestamp createdAt;
+    LocalDateTime createdAt;
     @JsonView(JsonViews.RankingView.class)
-    Timestamp updatedAt;
+    LocalDateTime updatedAt;
     @JsonView(JsonViews.NoRankingView.class)
     CategorizationSheetDTO categorizationSheet;
     @JsonView(JsonViews.RankingView.class)

@@ -9,6 +9,7 @@ import pl.scoutCamp.domain.Category;
 import pl.scoutCamp.domain.exception.NotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -26,5 +27,14 @@ public class CategoryService {
         }
         log.info("Categories: [{}]", categories);
         return categories;
+    }
+
+    @Transactional
+    public Category findCategoryById(int id) {
+        Optional<Category> category = categoryDAO.findCategoryById(id);
+        if (category.isEmpty()) {
+            throw new NotFoundException("Could not find this category");
+        }
+        return category.get();
     }
 }

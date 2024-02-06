@@ -8,4 +8,6 @@ import pl.scoutCamp.domain.TeamCategorizationSheet;
 public interface TeamCategorizationSheetMapper {
 
     TeamCategorizationSheetDTO map(TeamCategorizationSheet teamCategorizationSheet);
+
+    TeamCategorizationSheet map (TeamCategorizationSheetDTO teamCategorizationSheetDTO);
 }

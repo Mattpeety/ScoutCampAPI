@@ -8,3 +8,6 @@ I see regiment under the team and also under the troop).
 7. Security: add sign up
 [DONE] 8. URGENT: solve the problem with logging: "failed to lazily initialize a collection of role"
 9. Create authentication with tokens. Make research, find the best way to implement it.
+[DONE] 10. Modify database (based on changes in documentation) - talk with IGOR
+11. Find the best solution for POST method with Team Categorization Sheet and Assignments
+12. Same for PUT nad DELETE method

@@ -1,7 +1,6 @@
 package pl.scoutCamp.infrastructure.database.repository;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.scoutCamp.business.dao.CategoryDAO;
 import pl.scoutCamp.domain.Category;
@@ -23,5 +22,11 @@ public class CategoryRepository implements CategoryDAO {
         return categoryJpaRepository.findAll().stream()
                 .map(categoryEntityMapper::mapFromEntity)
                 .toList();
+    }
+
+    @Override
+    public Optional<Category> findCategoryById(int id) {
+        return categoryJpaRepository.findCategoryById(id)
+                .map(categoryEntityMapper::mapFromEntity);
     }
 }
